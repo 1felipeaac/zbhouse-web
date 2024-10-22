@@ -1,0 +1,7 @@
+.header {
+  background: var(--blue);
+  height: 8.5rem;
+
+  display: grid;
+  grid-template-columns: 22.5rem 1fr;
+}

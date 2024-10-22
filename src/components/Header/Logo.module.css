@@ -1,0 +1,19 @@
+.logo {
+    width: 22.5rem;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  
+    > img {
+      width: 5rem;
+    }
+  
+    > strong {
+      font-family: "Caveat Brush", cursive;
+      font-weight: 400;
+      font-size: 4rem;
+      color: var(--white);
+      text-shadow: 3px 3px var(--gray-900);
+    }
+  }

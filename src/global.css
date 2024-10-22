@@ -1,0 +1,38 @@
+:root {
+  --black: #000000; /* font */
+  --blue: #276be1;
+  --gray-900: #2c2c2c; /* font */
+  --gray-800: #5f6368;
+  --gray-700: #757575;
+  --gray-600: #b3b3b3;
+  --gray-500: #cacaca;
+  --gray-400: #d9d9d9;
+  --ice: #dcdcdc;
+  --light-gray-blue: #ccd5dd; /*background */
+  --silver-200: #e3e3e3;
+  --silver-100: #e2e2e2;
+  --yellow-300: #f5c21f;
+  --yellow-200: #fee543;
+  --yellow-200-opacity: rgba(255, 227, 47, 0.69);
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--light-gray-blue);
+  color: var(--gray-900);
+  --webkit-font-smoothing: antialiased;
+}
+
+body,
+input,
+button {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-size: 1rem;
+}

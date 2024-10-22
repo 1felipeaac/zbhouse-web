@@ -1,0 +1,28 @@
+.nav {
+  border-left: 1px solid var(--light-gray-blue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 2;
+  padding:0 2rem 0 2rem;
+
+  > div{
+    display: flex;
+    height: 3rem;
+    align-items: center;
+    justify-content: flex-end;
+    width: 30rem;
+    > input {
+      height: 3rem;
+      width: 25rem;
+    }
+    /* >span{
+      width: 2rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      color: var(--blue);
+      background-color: var(--white);
+    } */
+  }
+}
