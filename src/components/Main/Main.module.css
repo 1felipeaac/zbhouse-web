@@ -1,0 +1,14 @@
+.main {
+  background-color: var(--yellow-200-opacity);
+  height: 100vh;
+}
+
+.carrocel {
+  background-color: var(--gray-400);
+  margin: 3rem;
+  height: 20rem;
+  padding: 2rem;
+  display: flex;
+  min-width: 15rem;
+  justify-content: space-around;
+}
