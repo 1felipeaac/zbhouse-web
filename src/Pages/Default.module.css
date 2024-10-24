@@ -1,0 +1,11 @@
+.page {
+    margin: 1rem auto;
+    padding: 0 1rem;
+  }
+  .wrapper {
+    display: grid;
+    grid-template-columns: 22.5rem 1fr;
+    /* gap: 2rem; */
+    align-items: flex-start;
+  }
+  
