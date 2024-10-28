@@ -1,0 +1,20 @@
+.voltar {
+  text-decoration: none;
+}
+
+.voltar:visited {
+  color: var(--white);
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  cursor: pointer;
+  /* background-color: var(--blue-100); */
+  width: min-content;
+  margin: 1rem;
+  /* border-radius: 4px; */
+  /* padding: .2rem; */
+  color: var(--gray-800);
+}

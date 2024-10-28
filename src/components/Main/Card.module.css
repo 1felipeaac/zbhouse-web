@@ -1,5 +1,6 @@
 .card{
-    background-color: var(--white);
+    background-color: var(--light-gray-blue-100);
+    border: 1px solid var(--blue-100);
     max-width: 20.5rem;
     width: 100%;
 
@@ -46,6 +47,7 @@
     padding: .2rem;
     border-radius: 4px;
     cursor: pointer;
+    text-decoration: none;
     /* width: 100%; */
     span {
         color: var(--white);
@@ -82,4 +84,11 @@
     gap: 2rem;
 
     padding: .5rem;
+}
+
+@media (max-width: 768px) {
+    .card{
+       
+    }
+    
 }

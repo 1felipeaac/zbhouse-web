@@ -8,9 +8,10 @@ export function DashBoard() {
     <Default>
       <Main>
         <Carrocel>
-          <Card />
-          <Card />
-          <Card />
+          <Card detail="/detalhar" payment="/pagamento"/>
+          <Card detail="/detalhar" payment="/pagamento"/>
+          <Card detail="/detalhar" payment="/pagamento"/>
+          <Card detail="/detalhar" payment="/pagamento"/>
         </Carrocel>
       </Main>
     </Default>

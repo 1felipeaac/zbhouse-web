@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 
 function Line(props) {
@@ -10,14 +11,14 @@ function Line(props) {
 
 function Button(props) {
   return (
-    <div className={styles.bar}>
+    <Link className={styles.bar} to={props.page}>
       <span className="material-icons">{props.icon}</span>
       <button className={styles.button}>{props.button}</button>
-    </div>
+    </Link>
   );
 }
 
-export function Card() {
+export function Card(props) {
   return (
     <div className={styles.card}>
       <div className={styles.title}>
@@ -30,8 +31,8 @@ export function Card() {
         <Line icon="flight_takeoff" item="Checkout" />
       </ul>
       <div className={styles.buttons}>
-        <Button icon="zoom_in" button="Detalhar"/>
-        <Button icon="paid" button="Pagar"/>
+        <Button icon="zoom_in" button="Detalhar" page={props.detail}/>
+        <Button icon="paid" button="Pagar" page={props.payment}/>
       </div>
     </div>
   );

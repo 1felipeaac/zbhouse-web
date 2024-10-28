@@ -1,15 +1,17 @@
-import * as React from 'react';
-import dayjs from 'dayjs';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import DialogActions from '@mui/material/DialogActions';
-import { unstable_useId as useId } from '@mui/utils';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import * as React from "react";
+import dayjs from "dayjs";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import DialogActions from "@mui/material/DialogActions";
+import { unstable_useId as useId } from "@mui/utils";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 
-import { usePickersTranslations } from '@mui/x-date-pickers/hooks';
+import { usePickersTranslations } from "@mui/x-date-pickers/hooks";
+
+const isSmallScreen = window.innerWidth <= 768;
 
 function CustomActionBar(props) {
   const { onAccept, onClear, onCancel, onSetToday, actions, className } = props;
@@ -24,7 +26,7 @@ function CustomActionBar(props) {
 
   const menuItems = actions?.map((actionType) => {
     switch (actionType) {
-      case 'clear':
+      case "clear":
         return (
           <MenuItem
             onClick={() => {
@@ -37,7 +39,7 @@ function CustomActionBar(props) {
           </MenuItem>
         );
 
-      case 'cancel':
+      case "cancel":
         return (
           <MenuItem
             onClick={() => {
@@ -50,7 +52,7 @@ function CustomActionBar(props) {
           </MenuItem>
         );
 
-      case 'accept':
+      case "accept":
         return (
           <MenuItem
             onClick={() => {
@@ -63,7 +65,7 @@ function CustomActionBar(props) {
           </MenuItem>
         );
 
-      case 'today':
+      case "today":
         return (
           <MenuItem
             onClick={() => {
@@ -82,12 +84,12 @@ function CustomActionBar(props) {
   });
 
   return (
-    <DialogActions className={className}>
+    <DialogActions className={className} >
       {/* <Button
         id={`picker-actions-${id}`}
-        aria-controls={open ? 'basic-menu' : undefined}
+        aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open ? "true" : undefined}
         onClick={(event) => setAnchorEl(event.currentTarget)}
       >
         Actions
@@ -98,7 +100,7 @@ function CustomActionBar(props) {
         open={open}
         onClose={() => setAnchorEl(null)}
         MenuListProps={{
-          'aria-labelledby': `picker-actions-${id}`,
+          "aria-labelledby": `picker-actions-${id}`,
         }}
       >
         {menuItems}
@@ -109,7 +111,9 @@ function CustomActionBar(props) {
 
 export default function CalendarMaterial() {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider
+      dateAdapter={AdapterDayjs}
+    >
       <StaticDatePicker
         defaultValue={dayjs(Date.now())}
         slots={{
@@ -117,8 +121,12 @@ export default function CalendarMaterial() {
         }}
         slotProps={{
           actionBar: {
-            actions: ['today'],
+            actions: ["today"],
           },
+        }}
+        sx={{
+          width: isSmallScreen ? "18.5rem" : "100%",
+          minWidth: isSmallScreen ? "0" : "20rem",
         }}
       />
     </LocalizationProvider>

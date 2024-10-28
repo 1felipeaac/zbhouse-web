@@ -1,6 +1,7 @@
 :root {
   --black: #000000; /* font */
   --blue: #276be1;
+  --blue-100: #8cb4ec;
   --gray-900: #2c2c2c; /* font */
   --gray-800: #5f6368;
   --gray-700: #757575;
@@ -8,12 +9,14 @@
   --gray-500: #cacaca;
   --gray-400: #d9d9d9;
   --ice: #dcdcdc;
+  --light-gray-blue-100: #e0e8f4;
   --light-gray-blue: #ccd5dd; /*background */
   --silver-200: #e3e3e3;
   --silver-100: #e2e2e2;
   --yellow-300: #f5c21f;
   --yellow-200: #fee543;
-  --yellow-200-opacity: rgba(244, 207, 0, 0.478);
+  --yellow-200-opacity: #edc023
+  ;
   --white: #ffffff;
 }
 

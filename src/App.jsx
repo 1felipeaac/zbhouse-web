@@ -1,18 +1,12 @@
+import { BrowserRouter } from "react-router-dom";
 import "./global.css";
-
-import { DashBoard } from "./Pages/Dashboard";
-import { Reservar } from "./Pages/Reservar";
-import { Pagamento } from "./Pages/Pagamento";
-import { Disponibilidade } from "./Pages/Disponibilidade";
-
-export const TABLET_SIZE = "768px";
+import { Routes } from "./routes";
 
 function App() {
   return (
-    // <DashBoard/>
-    // <Reservar/>
-    // <Pagamento />
-    <Disponibilidade/>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
 }
 

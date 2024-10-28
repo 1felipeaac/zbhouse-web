@@ -11,32 +11,51 @@
   font-size: larger;
   border: 0;
   color: var(--white);
+  text-decoration: none;
   > span {
     color: var(--white);
   }
-  /* > button {
-    padding: 0;
-  } */
+ 
 }
+
+.clicked {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  padding-left: 1rem;
+  width: 100%;
+  background-color: var(--yellow-200-opacity);
+  cursor: pointer;
+  height: 3.76rem;
+  font-size: larger;
+  border: 0;
+  color: var(--black);
+  text-decoration: none;
+  > span {
+    color: var(--black);
+  }
+ 
+}
+
 
 .button:hover {
   background-color: var(--yellow-200-opacity);
   > span {
     color: var(--black);
   }
-  > button {
+  > div {
     color: var(--black);
   }
 }
 
 @media (max-width: 768px) {
-  .button{
+  .button {
     width: 5rem;
     padding: 0 1.75rem;
-    > div{
+    > div {
       /* display: none; */
       visibility: hidden;
     }
   }
-  
 }
