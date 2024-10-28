@@ -17,3 +17,9 @@
       text-shadow: 3px 3px var(--gray-900);
     }
   }
+
+@media (max-width: 768px) {
+  .logo{
+    margin: .5rem auto;
+  }
+}

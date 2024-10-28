@@ -5,14 +5,15 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 
 export function Nav() {
+  const isSmallScreen = window.innerWidth <= 768
   return (
     <nav className={styles.nav}>
-      <IconButton sx={{ p: "10px", color: "white" }} aria-label="menu">
+      <IconButton sx={{ p: "10px", color: "white", display: isSmallScreen ? 'none' : 'inline'}} aria-label="menu">
         <MenuIcon />
       </IconButton>
       <Paper
         component="form"
-        sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 400 }}
+        sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: isSmallScreen ? '100%' : 400, }}
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}

@@ -5,3 +5,11 @@
   display: grid;
   grid-template-columns: 22.5rem 1fr;
 }
+
+@media(max-width:768px){
+  .header{
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    height: auto;
+  }
+}

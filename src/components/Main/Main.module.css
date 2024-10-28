@@ -1,6 +1,6 @@
 .main {
   background-color: var(--yellow-200-opacity);
-  height: 100vh;
+  height: auto;
 }
 
 .carrocel {

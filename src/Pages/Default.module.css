@@ -1,11 +1,27 @@
 .page {
-    margin: 1rem auto;
-    padding: 0 1rem;
-  }
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: 22.5rem 1fr;
+  /* gap: 2rem; */
+  align-items: flex-start;
+  /* max-height: 100vh; */
+  height: 100%;
+}
+
+.footer{
+  background-color: var(--blue);
+  height: 2rem;
+  text-align: center;
+  padding: .5rem;
+  font-weight: bold;
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
   .wrapper {
-    display: grid;
-    grid-template-columns: 22.5rem 1fr;
-    /* gap: 2rem; */
-    align-items: flex-start;
+    grid-template-columns: 1fr;
   }
-  
+}

@@ -11,6 +11,7 @@ export function Default(props) {
         <Sidebar />
         {props.children}
       </div>
+      <footer className={styles.footer}>Suporte: felipeaacoelho@gmail.com</footer>
     </div>
   );
 }

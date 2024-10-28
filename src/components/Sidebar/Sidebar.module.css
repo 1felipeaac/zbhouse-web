@@ -1,6 +1,7 @@
 .sidebar{
     background-color: var(--gray-800);
-    height: 100vh;
+    max-height: 75vh;
+    height: 100%;
     padding: 1rem 0;
     position: relative;
 }
@@ -17,4 +18,14 @@
     bottom: 0;
     width: 100%;
     
+}
+
+@media(max-width: 768px){
+    .sidebar{
+        display: flex;
+        height: auto;
+        margin: .5rem 0 0 0;
+        padding: 0;
+        justify-content: center;
+    }
 }
