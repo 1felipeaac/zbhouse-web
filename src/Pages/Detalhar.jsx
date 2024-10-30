@@ -35,18 +35,6 @@ export function Detalhar() {
             <Line icon= {icon} item="Desconto" />
             <Line icon="percent" item={desconto.toFixed(1)} />
           </Card>
-          {/* <Inputs desc="Nome" type="text" />
-          <Inputs desc="Documento" type="text" />
-          <Inputs desc="Checkin" type="datetime-local" />
-          <Inputs desc="Checkout" type="datetime-local" />
-          <Inputs desc="Valor da Parcela" type="number" />
-          <Inputs desc="Data do Pagamento" type="datetime-local" />
-          <Inputs desc="Segunda Parcela" type="number" />
-          <Inputs desc="Data do Pagamento" type="datetime-local" />
-          <Inputs desc="Com desconto" type="checkbox" />
-          <Inputs desc="Desconto %" type="number" />
-          <Inputs desc="Valor da Reserva" type="number"/> */}
-          <div></div>
         </div>
       </Main>
     </Default>
