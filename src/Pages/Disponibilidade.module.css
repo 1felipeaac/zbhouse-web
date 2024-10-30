@@ -1,6 +1,13 @@
 .calendar{
     background-color: var(--yellow-200-opacity);
-    margin: .4rem;
+    margin: 2rem;
     display: flex;
     justify-content: center;
+}
+
+@media (max-width:768px){
+    .calendar{
+        margin: .4rem;
+    }
+    
 }

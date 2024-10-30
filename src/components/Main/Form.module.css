@@ -2,7 +2,8 @@
   background-color: var(--white);
   margin: 1rem;
   padding: 1.5rem;
-  display: flex
+  display: flex;
+  justify-content: center;
 }
 
 .form {
@@ -10,6 +11,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(4, 1fr) 1fr;
   gap: 1rem;
+  width: 100%;
 }
 
 .inputs {

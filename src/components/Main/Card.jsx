@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./Card.module.css";
+import { useEffect } from "react";
 
 function Title(props){
   return(
@@ -36,8 +37,20 @@ function List(props){
 }
 
 export function Card(props) {
+  const location = useLocation();
+
+  useEffect(() => {
+    const card = document.getElementById("cardBox");
+    
+    if(location.pathname === "/detalhar"){
+     card.classList.add(styles.cardWide)
+    }else{
+      card.classList.remove(styles.cardWide)
+    }
+    
+  }, [location]);
   return (
-    <div className={styles.card}>
+    <div id="cardBox" className={styles.card}>
       <Title nome={props.nome} valor={props.valor}/>
       <List>
         {props.children}
