@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 
-function Line(props) {
+function Title(props){
+  return(
+    <div className={styles.title}>
+        <strong>{props.nome}</strong>
+        <span>{props.valor}</span>
+      </div>
+  )
+}
+
+export function Line(props) {
   return (
     <li className={styles.line}>
       <span className="material-icons">{props.icon}</span> <h4>{props.item}</h4>
@@ -18,21 +27,24 @@ function Button(props) {
   );
 }
 
+function List(props){
+  return(
+    <ul className={styles.list}>
+      {props.children}
+    </ul>
+  )
+}
+
 export function Card(props) {
   return (
     <div className={styles.card}>
-      <div className={styles.title}>
-        <strong>Nome</strong>
-        <span>00,00</span>
-      </div>
-      <ul className={styles.list}>
-        <Line icon="assignment_ind" item="Documento" />
-        <Line icon="flight_land" item="Checkin" />
-        <Line icon="flight_takeoff" item="Checkout" />
-      </ul>
+      <Title nome={props.nome} valor={props.valor}/>
+      <List>
+        {props.children}
+      </List>
       <div className={styles.buttons}>
-        <Button icon="zoom_in" button="Detalhar" page={props.detail}/>
-        <Button icon="paid" button="Pagar" page={props.payment}/>
+        {props.detail && <Button icon="zoom_in" button="Detalhar" page={props.detail}/>}
+        {props.payment && <Button icon="paid" button="Pagar" page={props.payment}/>}
       </div>
     </div>
   );

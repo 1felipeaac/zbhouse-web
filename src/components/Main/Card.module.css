@@ -1,7 +1,6 @@
 .card{
     background-color: var(--light-gray-blue-100);
     border: 1px solid var(--blue-100);
-    max-width: 20.5rem;
     width: 100%;
 
     display: flex;

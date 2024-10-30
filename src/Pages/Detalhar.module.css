@@ -18,3 +18,11 @@
   /* padding: .2rem; */
   color: var(--gray-800);
 }
+
+.detail {
+  display: flex;
+  justify-content: center;
+  background-color: var(--white);
+  padding: 2rem;
+  margin: 2rem;
+}

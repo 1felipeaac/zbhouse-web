@@ -1,4 +1,7 @@
 .calendar{
     background-color: var(--yellow-200-opacity);
     margin: 1rem;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
 }
