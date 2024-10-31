@@ -16,6 +16,7 @@ function Voltar() {
   );
 }
 
+
 export function Detalhar() {
   const desconto = 0
   const icon = desconto > 0 ? "radio_button_checked": "radio_button_unchecked"
@@ -24,6 +25,11 @@ export function Detalhar() {
       <Main>
         <Voltar />
         <div className={styles.detail}>
+          {/* <Card nome={card.nome} valor={card.valor}>
+            {card.lines.map((line, index)=>{
+              return <Line key={index} icon={line.icon} item={`${line.item}`}/>
+            })}
+          </Card> */}
           <Card nome="Fulano" valor="2900,00">
             <Line icon="assignment_ind" item="Documento: 1234567" />
             <Line icon="flight_land" item="Checkin: 20/10/2024" />

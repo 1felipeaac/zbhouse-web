@@ -5,7 +5,10 @@ import { useEffect } from "react";
 function Title(props){
   return(
     <div className={styles.title}>
-        <strong>{props.nome}</strong>
+        <div>
+          <strong style={{display:"none"}}>{props.id}</strong>
+          <strong>{props.nome}</strong>
+        </div>
         <span>{props.valor}</span>
       </div>
   )
@@ -20,8 +23,15 @@ export function Line(props) {
 }
 
 function Button(props) {
+  function handleClick() {
+    // Acessando as props do Card
+    console.log("Props do Card:", props.cardProps);
+
+    // Chama a função onHandleClick passando as props do Card
+    props.onHandleClick(props.cardProps);
+  }
   return (
-    <Link className={styles.bar} to={props.page}>
+    <Link className={styles.bar} to={props.page} onClick={handleClick}>
       <span className="material-icons">{props.icon}</span>
       <button className={styles.button}>{props.button}</button>
     </Link>
@@ -37,6 +47,7 @@ function List(props){
 }
 
 export function Card(props) {
+  
   const location = useLocation();
 
   useEffect(() => {
@@ -51,12 +62,12 @@ export function Card(props) {
   }, [location]);
   return (
     <div id="cardBox" className={styles.card}>
-      <Title nome={props.nome} valor={props.valor}/>
+      <Title id={props.id} nome={props.nome} valor={props.valor}/>
       <List>
         {props.children}
       </List>
       <div className={styles.buttons}>
-        {props.detail && <Button icon="zoom_in" button="Detalhar" page={props.detail}/>}
+        {props.detail && <Button icon="zoom_in" button="Detalhar" page={props.detail} cardProps={props} onHandleClick={props.onHandleClick}/>}
         {props.payment && <Button icon="paid" button="Pagar" page={props.payment}/>}
       </div>
     </div>
