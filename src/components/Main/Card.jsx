@@ -46,7 +46,9 @@ function List(props){
   )
 }
 
-export function Card(props) {
+export function Card({id, nome, valor,children, detail, payment, onHandleClick}) {
+
+  const props = {id, nome, valor,children, detail, payment, onHandleClick}
   
   const location = useLocation();
 
@@ -62,13 +64,13 @@ export function Card(props) {
   }, [location]);
   return (
     <div id="cardBox" className={styles.card}>
-      <Title id={props.id} nome={props.nome} valor={props.valor}/>
+      <Title id={id} nome={nome} valor={valor}/>
       <List>
-        {props.children}
+        {children}
       </List>
       <div className={styles.buttons}>
-        {props.detail && <Button icon="zoom_in" button="Detalhar" page={props.detail} cardProps={props} onHandleClick={props.onHandleClick}/>}
-        {props.payment && <Button icon="paid" button="Pagar" page={props.payment}/>}
+        {detail && <Button icon="zoom_in" button="Detalhar" page={detail} cardProps={props} onHandleClick={onHandleClick}/>}
+        {payment && <Button icon="paid" button="Pagar" page={payment}/>}
       </div>
     </div>
   );

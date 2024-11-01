@@ -17,12 +17,12 @@ export const cards = [
       { icon: "assignment_ind", item: "123456" },
       { icon: "flight_land", item: "28/01/2024 10:30:01" },
       { icon: "flight_takeoff", item: "29/01/2024 10:30:00" },
-      { icon: "payments", item: "1500,00" },
-      { icon: "event", item: "29/01/2024 10:30:01" },
-      { icon: "payments", item: "1400,00" },
-      { icon: "event", item: "29/01/2024 10:30:02" },
-      { icon: select_icon, item: "Desconto" },
-      { icon: "percent", item: "29/01/2024 10:30:03" }
+      // { icon: "payments", item: "1500,00" },
+      // { icon: "event", item: "29/01/2024 10:30:01" },
+      // { icon: "payments", item: "1400,00" },
+      // { icon: "event", item: "29/01/2024 10:30:02" },
+      // { icon: select_icon, item: "Desconto" },
+      // { icon: "percent", item: "29/01/2024 10:30:03" }
     ]
 
   },
@@ -34,12 +34,12 @@ export const cards = [
       {icon: "assignment_ind", item: "456789"},
       {icon: "flight_land",item: "22/01/2024 10:30:00"},
       {icon: "flight_takeoff",item: "24/01/2024 10:30:00"},
-      { icon: "payments", item: "1500,00" },
-      { icon: "event", item: "22/01/2024 10:30:02" },
-      { icon: "payments", item: "1000,00" },
-      { icon: "event", item: "24/01/2024 10:30:01" },
-      { icon: select_icon, item: "Desconto" },
-      { icon: "percent", item: "24/01/2024 10:30:03" }
+      // { icon: "payments", item: "1500,00" },
+      // { icon: "event", item: "22/01/2024 10:30:02" },
+      // { icon: "payments", item: "1000,00" },
+      // { icon: "event", item: "24/01/2024 10:30:01" },
+      // { icon: select_icon, item: "Desconto" },
+      // { icon: "percent", item: "24/01/2024 10:30:03" }
     ]
 
   },{
@@ -50,12 +50,12 @@ export const cards = [
       {icon: "assignment_ind", item: "789456"},
       {icon: "flight_land",item: "25/01/2024 10:30:00"},
       {icon: "flight_takeoff",item: "27/01/2024 10:30:03"},
-      { icon: "payments", item: "1500,00" },
-      { icon: "event", item: "25/01/2024 10:30:01" },
-      { icon: "payments", item: "1400,00" },
-      { icon: "event", item: "27/01/2024 10:30:02" },
-      { icon: select_icon, item: "Desconto" },
-      { icon: "percent", item: "27/01/2024 10:30:05" }
+      // { icon: "payments", item: "1500,00" },
+      // { icon: "event", item: "25/01/2024 10:30:01" },
+      // { icon: "payments", item: "1400,00" },
+      // { icon: "event", item: "27/01/2024 10:30:02" },
+      // { icon: select_icon, item: "Desconto" },
+      // { icon: "percent", item: "27/01/2024 10:30:05" }
     ]
 
   },{
@@ -66,12 +66,12 @@ export const cards = [
       {icon: "assignment_ind", item: "456123"},
       {icon: "flight_land",item: "30/01/2024 10:30:00"},
       {icon: "flight_takeoff",item: "31/01/2024 10:30:01"},
-      { icon: "payments", item: "1500,00" },
-      { icon: "event", item: "30/01/2024 10:30:02" },
-      { icon: "payments", item: "1000,00" },
-      { icon: "event", item: "31/01/2024 10:30:05" },
-      { icon: select_icon, item: "Desconto" },
-      { icon: "percent", item: "31/01/2024 10:30:06" }
+      // { icon: "payments", item: "1500,00" },
+      // { icon: "event", item: "30/01/2024 10:30:02" },
+      // { icon: "payments", item: "1000,00" },
+      // { icon: "event", item: "31/01/2024 10:30:05" },
+      // { icon: select_icon, item: "Desconto" },
+      // { icon: "percent", item: "31/01/2024 10:30:06" }
     ]
 
   },

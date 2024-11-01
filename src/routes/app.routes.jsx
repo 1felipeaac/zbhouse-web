@@ -4,11 +4,13 @@ import {Reservar} from '../Pages/Reservar'
 import {Pagamento} from '../Pages/Pagamento'
 import {Disponibilidade} from '../Pages/Disponibilidade'
 import { Detalhar } from '../Pages/Detalhar'
+import { Login } from '../Pages/Login'
 
 export function AppRoutes(){
     return (
         <Routes>
             <Route path='/' element={<DashBoard/>}/>
+            <Route path='/login' element={<Login/>}/>
             <Route path='/detalhar' element={<Detalhar/>}/>
             <Route path='/reservar' element={<Reservar/>}/>
             <Route path='/pagamento' element={<Pagamento/>}/>
