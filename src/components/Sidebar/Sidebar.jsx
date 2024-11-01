@@ -1,12 +1,22 @@
 import { Items } from './Items'
 import styles from './Sidebar.module.css'
+
+const descs = ["Dashboard", "Reservar", "Pagamento", "Disponibilidade"]
+const icons = ["space_dashboard", "format_list_bulleted", "paid", "calendar_month"]
+const pages = ["/", "/reservar", "/pagamento", "/disponibilidade"]
+
 export function Sidebar(){
     return (
         <aside className={styles.sidebar}>
-            <Items desc="Dashboard" icon="space_dashboard" page="/"/>
-            <Items desc="Reservar" icon="format_list_bulleted" page="/reservar"/>
-            <Items desc="Pagamento" icon="paid" page="/pagamento"/>
-            <Items desc="Disponibilidade" icon="calendar_month" page="/disponibilidade"/>
+
+            {descs.map((desc, index) => {
+                const icon = icons[index]
+                const page = pages[index]
+
+                return(
+                    <Items key= {index} desc={desc} icon={icon} page={page}/>
+                )
+            })}
         </aside>
     )
 }

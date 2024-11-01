@@ -7,14 +7,14 @@ export function Reservar() {
     <Default>
       <Main>
         <Form>
-          <Inputs desc="Nome" type="text" />
-          <Inputs desc="Documento" type="text" />
-          <Inputs desc="Checkin" type="datetime-local" />
-          <Inputs desc="Checkout" type="datetime-local" />
-          <Inputs desc="Valor da Parcela" type="number" />
-          <Inputs desc="Data Pagamento" type="datetime-local" />
-          <Inputs desc="Com desconto" type="checkbox" checkbox="checkbox"/>
-          <Inputs desc="Desconto %" type="number" />
+          <Inputs desc="Nome" type="text" required={true}/>
+          <Inputs desc="Documento" type="text" required={true}/>
+          <Inputs desc="Checkin" type="datetime-local" required={true}/>
+          <Inputs desc="Checkout" type="datetime-local" required={true}/>
+          <Inputs desc="Valor da Parcela" type="number" required={true}/>
+          <Inputs desc="Data Pagamento" type="datetime-local" required={true}/>
+          <Inputs desc="Com desconto" type="checkbox" checkbox="checkbox" required={false}/>
+          <Inputs desc="Desconto %" type="number" required={false}/>
           <Inputs type="submit" />
         </Form>
       </Main>

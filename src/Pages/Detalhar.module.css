@@ -18,3 +18,19 @@
   /* padding: .2rem; */
   color: var(--gray-800);
 }
+
+.detail {
+  display: flex;
+  justify-content: center;
+  background-color: var(--white);
+  padding: 2rem;
+  margin: 2rem;
+}
+
+@media (max-width: 768px) {
+
+  .detail{
+    margin: 1rem;
+    padding: .5rem;
+  }
+}

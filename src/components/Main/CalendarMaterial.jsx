@@ -126,7 +126,7 @@ export default function CalendarMaterial() {
         }}
         sx={{
           width: isSmallScreen ? "18.5rem" : "100%",
-          minWidth: isSmallScreen ? "0" : "20rem",
+          minWidth: isSmallScreen ? "0" : "20rem"
         }}
       />
     </LocalizationProvider>

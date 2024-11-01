@@ -8,14 +8,14 @@ export function Pagamento() {
     <Default>
       <Main>
         <Form>
-          <Inputs desc="Nome" type="text" />
-          <Inputs desc="Documento" type="text" />
-          <Inputs desc="Checkin" type="datetime-local" />
-          <Inputs desc="Checkout" type="datetime-local" />
-          <Inputs desc="Valor da Parcela" type="number" />
-          <Inputs desc="Data do Pagamento" type="datetime-local" />
-          <Inputs desc="Segunda Parcela" type="number" />
-          <Inputs desc="Data do Pagamento" type="datetime-local" />
+          <Inputs desc="Nome" type="text" disable={true}/>
+          <Inputs desc="Documento" type="text" disable={true}/>
+          <Inputs desc="Checkin" type="datetime-local" disable={true}/>
+          <Inputs desc="Checkout" type="datetime-local" disable={true}/>
+          <Inputs desc="Valor da Parcela" type="number" disable={true}/>
+          <Inputs desc="Data do Pagamento" type="datetime-local" disable={true}/>
+          <Inputs desc="Segunda Parcela" type="number" required={true}/>
+          <Inputs desc="Data do Pagamento" type="datetime-local" required={true}/>
           <Inputs type="submit" />
         </Form>
       </Main>

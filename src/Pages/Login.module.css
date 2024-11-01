@@ -1,0 +1,42 @@
+.wrapperLogin{
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    height: 100%;
+    place-content: center;
+    background-color: white;
+    margin: 2rem;
+}
+
+.asideImg{
+    background-color:#276be1;
+    display: flex;
+    padding: 2rem;
+    justify-content: center;
+    margin: 1rem;
+    img{
+        width: 28rem;
+    }
+}
+
+.formLoginPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+@media(max-width:768px){
+    .wrapperLogin{
+        grid-template-columns: 1fr;
+    }
+    .asideImg{
+        padding: 1rem;
+        margin: .5rem;
+        img{
+            width: 4rem;
+        }
+    }
+}

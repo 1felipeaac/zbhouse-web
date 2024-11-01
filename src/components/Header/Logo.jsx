@@ -1,12 +1,9 @@
 import styles from "./Logo.module.css";
-// import logo from "../../assets/logo3.png";
-
+import ZBHouseLogo from "../../assets/zbHouseLogo.png"
 export function Logo() {
-  const logo = "../../assets/logo3.png"
- 
   return (
     <div className={styles.logo}>
-      <img src={logo}/>
+      <img src={ZBHouseLogo} />
       <strong>Reservas</strong>
     </div>
   );

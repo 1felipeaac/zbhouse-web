@@ -1,21 +1,48 @@
 import styles from "./Form.module.css";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
-export function Inputs(props) {
-  const inputClasses = props.checkbox
-    ? `${styles.inputs} ${styles[props.checkbox]}`
+export function Inputs({checkbox, desc, type, required, disable}) {
+  const inputClasses = checkbox
+    ? `${styles.inputs} ${styles[checkbox]}`
     : styles.inputs;
+  
+    function handleInputInvalid(){
+      event.target.setCustomValidity("Campo obrigatório!")
+    }
+
+    function handleChangeValue(){
+      event.target.setCustomValidity('')
+    }
   return (
     <div className={inputClasses}>
-      <span>{props.desc}</span>
-      <input type={props.type} />
+      <span>{desc}</span>
+      <input type={type} required={required} disabled={disable} onInvalid={handleInputInvalid} onChange={handleChangeValue}/>
     </div>
   );
 }
 
-export function Form(props) {
+export function Form({children}) {
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const form = document.getElementById("displayForm");
+
+    // console.log(form)
+    // console.log(location)
+    
+    if(location.pathname === "/login"){
+     form.classList.add(styles.formLogin)
+    }else{
+      form.classList.remove(styles.formLogin)
+    }
+    
+  }, [location]);
+
   return (
     <div className={styles.formPage}>
-      <form className={styles.form}>{props.children}</form>
+      <form id="displayForm" className={styles.form}>{children}</form>
     </div>
   );
 }
