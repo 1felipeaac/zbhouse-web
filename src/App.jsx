@@ -1,12 +1,13 @@
 import { BrowserRouter } from "react-router-dom";
 import "./global.css";
 import { Routes } from "./routes";
+import { AuthProvider } from "./hooks/auth";
 
 function App() {
   return (
-    <BrowserRouter>
+    <AuthProvider>
       <Routes />
-    </BrowserRouter>
+    </AuthProvider>
   );
 }
 
