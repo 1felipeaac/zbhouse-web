@@ -16,6 +16,8 @@ export function AuthProvider({ children }) {
 
       const user = response.data
 
+      console.log(response)
+
       localStorage.setItem("@zbHouse:user", JSON.stringify(user));
 
       setData(user)

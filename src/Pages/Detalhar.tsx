@@ -5,6 +5,12 @@ import { Default } from "./Default";
 import styles from "./Detalhar.module.css";
 import { Card, Line } from "../components/Main/Card";
 
+import { useParams } from "react-router-dom";
+import {api} from "../services/api"
+import { useEffect, useState } from "react";
+import { Reservas } from "../Utils/Interfaces";
+import React from "react";
+
 function Voltar() {
   return (
     <Link className={styles.voltar} to="/">
@@ -17,19 +23,34 @@ function Voltar() {
 }
 
 
+
 export function Detalhar() {
+  const [reserva, setReserva] = useState<Reservas | {}>({})
   const desconto = 0
   const icon = desconto > 0 ? "radio_button_checked": "radio_button_unchecked"
+
+  const params = useParams()
+
+  useEffect(() => {
+    async function consultaReservaPorId(){
+      const {data} = await api.get(`/reservas/${params.id}`)
+
+      setReserva(data)
+
+      // console.log(data)
+    }
+
+    consultaReservaPorId()
+  },[])
+
+  
+
   return (
     <Default>
       <Main>
         <Voltar />
         <div className={styles.detail}>
-          {/* <Card nome={card.nome} valor={card.valor}>
-            {card.lines.map((line, index)=>{
-              return <Line key={index} icon={line.icon} item={`${line.item}`}/>
-            })}
-          </Card> */}
+
           <Card nome="Fulano" valor="2900,00">
             <Line icon="assignment_ind" item="Documento: 1234567" />
             <Line icon="flight_land" item="Checkin: 20/10/2024" />
