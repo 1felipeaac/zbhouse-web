@@ -1,8 +1,10 @@
+// @ts-nocheck
 import styles from "./Login.module.css";
 import ZBHouseLogo from "../assets/zbHouseLogo.png";
 import { Form, Inputs } from "../components/Main/Form";
 import { useAuth } from "../hooks/auth";
 import { useState } from "react";
+import React from "react";
 
 export function Login() {
   const [login, setLogin] = useState("");

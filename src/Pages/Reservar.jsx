@@ -1,6 +1,7 @@
 import { Default } from "./Default";
 import { Main } from "../components/Main/Main";
 import { Form, Inputs } from "../components/Main/Form";
+import React from "react";
 
 export function Reservar() {
   return (

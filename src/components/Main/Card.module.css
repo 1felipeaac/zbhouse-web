@@ -68,6 +68,7 @@
     }
 }
 
+
 .bar:first-child{
     background-color: var(--gray-900);
 }
@@ -88,6 +89,15 @@
     color: var(--white);
     cursor: pointer;
     padding: .2rem;
+}
+
+.disabledLink{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.button:disabled{
+    opacity: 0.5;
 }
 
 

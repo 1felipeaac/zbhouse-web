@@ -1,8 +1,16 @@
 import { useEffect } from "react";
+// @ts-ignore
 import styles from "./Itens.module.css";
 import { Link, useLocation } from "react-router-dom";
+import React from "react";
 
-export function Items({desc, page, icon}) {
+interface ItemsProps{
+  desc: string,
+  page:string,
+  icon:string,
+}
+
+export function Items({desc, page, icon}: ItemsProps) {
   const location = useLocation();
 
   useEffect(() => {
@@ -14,11 +22,14 @@ export function Items({desc, page, icon}) {
 
     const button = document.getElementById(desc);
 
-    if (linkPath === currentPath) {
-      button.classList.add(styles.clicked);
-    } else {
-      button.classList.remove(styles.clicked);
+    if(button){
+      if (linkPath === currentPath) {
+        button.classList.add(styles.clicked);
+      } else {
+        button.classList.remove(styles.clicked);
+      }
     }
+
   }, [location, page, desc]);
   return (
     <Link id={desc} className={styles.button} to={page}>

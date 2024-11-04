@@ -1,16 +1,16 @@
+import React from 'react'
 import { Items } from './Items'
+// @ts-ignore
 import styles from './Sidebar.module.css'
+import { descs, iconsSideBar, pages } from '../../Utils/Lists'
 
-const descs = ["Dashboard", "Reservar", "Pagamento", "Disponibilidade"]
-const icons = ["space_dashboard", "format_list_bulleted", "paid", "calendar_month"]
-const pages = ["/", "/reservar", "/pagamento", "/disponibilidade"]
 
 export function Sidebar(){
     return (
         <aside className={styles.sidebar}>
 
             {descs.map((desc, index) => {
-                const icon = icons[index]
+                const icon = iconsSideBar[index]
                 const page = pages[index]
 
                 return(

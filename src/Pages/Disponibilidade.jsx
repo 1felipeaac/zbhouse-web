@@ -1,3 +1,5 @@
+// @ts-nocheck
+import React from "react";
 import CalendarMaterial from "../components/Main/CalendarMaterial";
 import { Main } from "../components/Main/Main";
 import { Default } from "./Default";

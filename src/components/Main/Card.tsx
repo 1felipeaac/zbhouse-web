@@ -1,10 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
+// @ts-ignore
 import styles from "./Card.module.css";
-import { ReactElement, ReactNode, useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import React from "react";
 
 interface TitleProps{
-  id: number;
+  id?: number;
   nome: string;
   valor: number;
 }
@@ -12,10 +13,10 @@ function Title({id, nome, valor}: TitleProps) {
   return (
     <div className={styles.title}>
       <div>
-        <strong style={{ display: "none" }}>{id}</strong>
+      {id !== undefined && <strong style={{ display: "none" }}>{id}</strong>}
         <strong>{nome}</strong>
       </div>
-      <span>{valor}</span>
+      <span>R$ {valor}</span>
     </div>
   );
 }
@@ -38,30 +39,32 @@ interface ButtonProps {
   page:string,
   icon:string,
   button:string
+  pago?:boolean
 }
 
-function Button({handleClick, page, icon, button}:ButtonProps) {
+function Button({handleClick, page, icon, button, pago}:ButtonProps) {
  
   return (
-    <Link className={styles.bar} to={page} onClick={handleClick}>
+    <Link className={`${styles.bar} ${pago ? styles.disabledLink : ''}`} to={page} onClick={handleClick} hidden={pago}>
       <span className="material-icons">{icon}</span>
-      <button className={styles.button}>{button}</button>
+      <button className={styles.button} disabled={pago}>{button}</button>
     </Link>
   );
 }
 
-interface ListProps{children: ReactNode[]}
+interface ListProps{children: ReactNode}
 function List({children}:ListProps) {
   return <ul className={styles.list}>{children}</ul>;
 }
 
 interface CardProps {
-  id: number;
+  id?: number;
   nome: string;
   valor: number;
-  children: ReactNode[];
-  detail: string;
-  payment: string;
+  children?: ReactNode[];
+  detail?: string;
+  payment?: string;
+  pago?: boolean
   onHandleClickDetail?: () => void;
 }
 
@@ -73,6 +76,7 @@ export function Card({
   detail,
   payment,
   onHandleClickDetail,
+  pago
 }: CardProps) {
   
 
@@ -82,7 +86,7 @@ export function Card({
     const card = document.getElementById("cardBox");
 
     if (card) {
-      if (location.pathname === "/detalhar") {
+      if (location.pathname.includes("/detalhar")) {
         card.classList.add(styles.cardWide);
       } else {
         card.classList.remove(styles.cardWide);
@@ -102,7 +106,7 @@ export function Card({
             handleClick={onHandleClickDetail}
           />
         )}
-        {payment && <Button icon="paid" button="Pagar" page={payment} />}
+        {payment && <Button icon="paid" button="Pagar" page={payment} pago={pago}/>}
       </div>
     </div>
   );

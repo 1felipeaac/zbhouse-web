@@ -1,15 +1,16 @@
+// @ts-ignore
+import styles from "./Detalhar.module.css";
 import { Link } from "react-router-dom";
-import { Form, Inputs } from "../components/Main/Form";
 import { Main } from "../components/Main/Main";
 import { Default } from "./Default";
-import styles from "./Detalhar.module.css";
 import { Card, Line } from "../components/Main/Card";
 
 import { useParams } from "react-router-dom";
 import {api} from "../services/api"
 import { useEffect, useState } from "react";
-import { Reservas } from "../Utils/Interfaces";
+import { Pagamentos, Reservas } from "../Utils/Interfaces";
 import React from "react";
+import { icons, titulos } from "../Utils/Lists";
 
 function Voltar() {
   return (
@@ -25,9 +26,10 @@ function Voltar() {
 
 
 export function Detalhar() {
-  const [reserva, setReserva] = useState<Reservas | {}>({})
-  const desconto = 0
-  const icon = desconto > 0 ? "radio_button_checked": "radio_button_unchecked"
+  const [reserva, setReserva] = useState<Reservas | null>(null)
+  const [lines, setLines] = useState<string[]>([])
+  const [primeiraParcela, setPrimeiraParcela] = useState<Pagamentos | null>(null)
+  const [segundaParcela, setSegundaParcela] = useState<Pagamentos | null>(null)
 
   const params = useParams()
 
@@ -36,12 +38,39 @@ export function Detalhar() {
       const {data} = await api.get(`/reservas/${params.id}`)
 
       setReserva(data)
-
-      // console.log(data)
     }
 
     consultaReservaPorId()
   },[])
+
+  useEffect(() => {
+    if (reserva != null){
+
+      console.log("Quantidade de pagamentos: "+reserva.pagamentos.length)
+      
+      reserva.pagamentos.map((pagamento) => {
+        console.log(pagamento)
+        if(pagamento.parcela == 1){ 
+          setPrimeiraParcela(pagamento)
+        }
+        setSegundaParcela(pagamento)
+      })
+      const verificaDesconto = reserva.desconto > 0 ? "Sim": "Não"
+      if (primeiraParcela && segundaParcela){
+        setLines([
+          reserva.documento, 
+          reserva.checkin.toString(), 
+          reserva.checkout.toString(), 
+          primeiraParcela.valor_pagamento.toFixed(2),
+          primeiraParcela.data_pagamento.toString(),
+          segundaParcela.valor_pagamento.toFixed(2),
+          segundaParcela.data_pagamento.toString(),
+          verificaDesconto,
+          reserva.desconto.toFixed(0)
+        ])
+      }
+    }
+  },[reserva])
 
   
 
@@ -51,17 +80,13 @@ export function Detalhar() {
         <Voltar />
         <div className={styles.detail}>
 
-          <Card nome="Fulano" valor="2900,00">
-            <Line icon="assignment_ind" item="Documento: 1234567" />
-            <Line icon="flight_land" item="Checkin: 20/10/2024" />
-            <Line icon="flight_takeoff" item="Checkout: 25/10/2024" />
-            <Line icon="payments" item="Primeira Parcela: 1500,00" />
-            <Line icon="event" item="Data Pagamento: 20/09/2024" />
-            <Line icon="payments" item="Segunda Parcela: 1400,00" />
-            <Line icon="event" item="Data Pagamento: 20/10/2024" />
-            <Line icon= {icon} item="Desconto" />
-            <Line icon="percent" item={desconto.toFixed(1)} />
-          </Card>
+          {reserva && <Card nome={reserva.nome} valor={reserva.valor_reserva}>
+            {lines.map((line, index) =>{
+              let icon = icons[index]
+              const titulo = titulos[index]
+              return <Line key={titulo} icon={icon} item={`${titulo} ${line}`}/>
+            })}
+          </Card>}
         </div>
       </Main>
     </Default>

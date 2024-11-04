@@ -1,7 +1,9 @@
 import { Main } from "../components/Main/Main";
 import { Form, Inputs } from "../components/Main/Form";
 import { Default } from "./Default";
+// @ts-ignore
 import styles from "./Pagamento.module.css";
+import React from "react";
 
 export function Pagamento() {
   return (
