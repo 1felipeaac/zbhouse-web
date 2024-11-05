@@ -4,6 +4,7 @@ import { Main } from "../components/Main/Main";
 import { useEffect, useState } from "react";
 import {api} from "../services/api"
 import { Default } from "./Default";
+import { format } from 'date-fns';
 
 import React from "react";
 import { Reservas } from "../Utils/Interfaces";
@@ -34,8 +35,8 @@ export function DashBoard() {
             reservas.map((reserva: Reservas, index: number) => {
               const lines = [
                 reserva.documento,
-                reserva.checkin,
-                reserva.checkout,
+                format(reserva.checkin, "dd/MM/yyyy HH:mm"),
+                format(reserva.checkout, "dd/MM/yyyy HH:mm"),
               ];
               return (
                 <Card

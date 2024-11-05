@@ -12,6 +12,7 @@ interface InputsProps{
   disable?: boolean,
   onChange?: React.ChangeEventHandler<HTMLInputElement>,
   onClick?: React.MouseEventHandler<HTMLInputElement>
+  value?: string
 }
 
 export function Inputs({
@@ -22,6 +23,7 @@ export function Inputs({
   disable,
   onChange,
   onClick,
+  value
 }: InputsProps) {
   const inputClasses = checkbox
     ? `${styles.inputs} ${styles[checkbox]}`
@@ -41,6 +43,7 @@ export function Inputs({
         type={type}
         required={required}
         disabled={disable}
+        value={value}
         // onInvalid={handleInputInvalid}
         onChange={onChange}
         onClick={onClick}
