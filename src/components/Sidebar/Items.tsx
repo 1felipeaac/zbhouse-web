@@ -23,6 +23,11 @@ export function Items({desc, page, icon}: ItemsProps) {
     const button = document.getElementById(desc);
 
     if(button){
+
+      if(location.pathname.includes("/pagamento")){
+        button.setAttribute("disabled", "disabled");
+      }
+
       if (linkPath === currentPath) {
         button.classList.add(styles.clicked);
       } else {

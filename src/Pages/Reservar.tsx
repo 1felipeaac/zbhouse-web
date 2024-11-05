@@ -3,33 +3,39 @@ import { Main } from "../components/Main/Main";
 import { Form, Inputs } from "../components/Main/Form";
 import {Reservas} from "../Utils/Interfaces"
 import React, { FormEvent, useState } from "react";
+import { api } from "../services/api";
 
 export function Reservar() {
   const [nome, setNome] = useState<string>()
-  const [documento, setDocumento] = useState()
-  const [checkin, setCheckin] = useState()
-  const [checkout, setCheckout] = useState()
-  const [dataPagamento, setDataPagamento] = useState()
-  const [valor, setValor] = useState()
-  const [desconto, setDesconto] = useState()
+  const [documento, setDocumento] = useState<string>()
+  const [checkin, setCheckin] = useState<string>()
+  const [checkout, setCheckout] = useState<string>()
+  const [dataPagamento, setDataPagamento] = useState<string>()
+  const [valor, setValor] = useState<string>()
+  const [desconto, setDesconto] = useState<string>()
 
-  // const reserva:Reservas ={
-  //   nome: nome,
-  //   documento: documento,
-  //   checkin: checkin,
-  //   checkout: checkout,
-  //   pagamentos: [
-  //     {parcela: 1,
-  //     data_pagamento: dataPagamento,
-  //     valor_pagamento: valor, //
-  //     },
-  //   ],
-  //   desconto: desconto,
+  const checkinDate = checkin ? new Date(checkin) : undefined;
+  const checkoutDate = checkout ? new Date(checkout) : undefined;
+  const dataPagamentoDate = dataPagamento ? new Date(dataPagamento) : undefined;
 
-  // }
-  function handleCriarReserva(event: FormEvent){
+  const reserva:Reservas ={
+    nome: nome,
+    documento: documento,
+    checkin: checkinDate,
+    checkout: checkoutDate,
+    pagamentos: [
+      {parcela: 1,
+      data_pagamento: dataPagamentoDate,
+      valor_pagamento: Number(valor), //
+      },
+    ],
+    desconto: Number(desconto),
+
+  }
+  async function handleCriarReserva(event: FormEvent){
     event.preventDefault();
-    console.log(nome)
+    await api.post("/reservas/", reserva, {withCredentials: true, headers: {'Content-Type': 'application/json'}})
+    console.log(reserva)
   }
   return (
     <Default>

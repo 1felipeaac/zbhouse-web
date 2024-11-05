@@ -6,13 +6,11 @@ import { Default } from "./Default";
 import { Card, Line } from "../components/Main/Card";
 
 import { useParams } from "react-router-dom";
-import { api } from "../services/api";
+import {api} from "../services/api"
 import { useEffect, useState } from "react";
 import { Pagamentos, Reservas } from "../Utils/Interfaces";
 import React from "react";
 import { icons, titulos } from "../Utils/Lists";
-import { format } from 'date-fns';
-import { formatDate } from "../Utils/FormatDate";
 
 function Voltar() {
   return (
@@ -25,28 +23,28 @@ function Voltar() {
   );
 }
 
-export function Detalhar() {
-  const [reserva, setReserva] = useState<Reservas | null>(null);
-  const [lines, setLines] = useState<string[]>([]);
-  const [primeiraParcela, setPrimeiraParcela] = useState<Pagamentos | null>(
-    null
-  );
-  const [segundaParcela, setSegundaParcela] = useState<Pagamentos | null>(null);
 
-  const params = useParams();
+
+export function Detalhar() {
+  const [reserva, setReserva] = useState<Reservas | null>(null)
+  const [lines, setLines] = useState<string[]>([])
+  const [primeiraParcela, setPrimeiraParcela] = useState<Pagamentos | null>(null)
+  const [segundaParcela, setSegundaParcela] = useState<Pagamentos | null>(null)
+
+  const params = useParams()
 
   useEffect(() => {
-    async function consultaReservaPorId() {
-      const { data } = await api.get(`/reservas/${params.id}`);
+    async function consultaReservaPorId(){
+      const {data} = await api.get(`/reservas/${params.id}`)
 
-      setReserva(data);
+      setReserva(data)
     }
 
-    consultaReservaPorId();
-  }, []);
+    consultaReservaPorId()
+  },[])
 
   useEffect(() => {
-    if (reserva != null) {
+    if (reserva != null){
 
       if(reserva.pagamentos.length === 1){
         setSegundaParcela({data_pagamento: reserva.checkout, parcela: 2, valor_pagamento: 0})
@@ -59,40 +57,39 @@ export function Detalhar() {
           setSegundaParcela(pagamento);
         }
 
-      });
-      const verificaDesconto = reserva.desconto > 0 ? "Sim" : "Não";
-      if (primeiraParcela && segundaParcela) {
+      })
+      const verificaDesconto = reserva.desconto > 0 ? "Sim": "Não"
+      if (primeiraParcela && segundaParcela){
         setLines([
-          reserva.documento,
-          formatDate(reserva.checkin),
-          formatDate(reserva.checkout),
+          reserva.documento, 
+          reserva.checkin.toString(), 
+          reserva.checkout.toString(), 
           primeiraParcela.valor_pagamento.toFixed(2),
-          formatDate(primeiraParcela.data_pagamento),
+          primeiraParcela.data_pagamento.toString(),
           segundaParcela.valor_pagamento.toFixed(2),
-          formatDate(segundaParcela.data_pagamento),
+          segundaParcela.data_pagamento.toString(),
           verificaDesconto,
-          reserva.desconto.toFixed(0),
-        ]);
+          reserva.desconto.toFixed(0)
+        ])
       }
     }
-  }, [reserva]);
+  },[reserva])
+
+  
 
   return (
     <Default>
       <Main>
         <Voltar />
         <div className={styles.detail}>
-          {reserva && (
-            <Card nome={reserva.nome} valor={reserva.valor_reserva}>
-              {lines.map((line, index) => {
-                let icon = icons[index];
-                const titulo = titulos[index];
-                return (
-                  <Line key={titulo} icon={icon} item={`${titulo} ${line}`} />
-                );
-              })}
-            </Card>
-          )}
+
+          {reserva && <Card nome={reserva.nome} valor={reserva.valor_reserva}>
+            {lines.map((line, index) =>{
+              let icon = icons[index]
+              const titulo = titulos[index]
+              return <Line key={titulo} icon={icon} item={`${titulo} ${line}`}/>
+            })}
+          </Card>}
         </div>
       </Main>
     </Default>

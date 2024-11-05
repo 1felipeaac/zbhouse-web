@@ -22,13 +22,10 @@ export function Pagamento() {
   async function pagarSegundaParcela(event: FormEvent) {
     event.preventDefault();
     try {
-      const headers = {
-        "Content-Type": "application/json",
-      };
+      
       await api.post(
         `/pagamentos/${params.id}`,
-        { valor, data },
-        { withCredentials: true, headers: headers }
+        { valor, data }
       );
 
       navigate(-1);
@@ -53,7 +50,7 @@ export function Pagamento() {
       setReserva(data);
     }
     pagamentoSegundaParcela();
-  }, []);
+  }, [params.id]);
   return (
     <Default>
       <Main>
