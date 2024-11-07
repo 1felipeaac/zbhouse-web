@@ -2,7 +2,7 @@ import { Card, Line } from "../components/Main/Card";
 import { Carrocel } from "../components/Main/Carrocel";
 import { Main } from "../components/Main/Main";
 import { useEffect, useState } from "react";
-import {api} from "../services/api"
+import {api, configHeaders} from "../services/api"
 import { Default } from "./Default";
 import { format } from 'date-fns';
 
@@ -20,9 +20,13 @@ export function DashBoard() {
 
   useEffect(() => {
     async function listarReservas() {
-      const response = await api.get("/reservas/todos");
-      const reservasData = response.data.content;
-      setReservas(reservasData);
+      try{
+        const response = await api.get("/reservas/todos");
+        const reservasData = response.data.content;
+        setReservas(reservasData);
+      }catch(err){
+        console.log(err);
+      }
     }
 
     listarReservas();

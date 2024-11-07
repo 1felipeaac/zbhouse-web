@@ -5,8 +5,6 @@ import { api } from "../services/api";
 
 const AuthContext = createContext({});
 
-
-
 export function AuthProvider({ children }) {
   const [data, setData] = useState("");
   async function autenticar({ login, senha }) {
@@ -15,9 +13,11 @@ export function AuthProvider({ children }) {
         "/login",
         { login, senha },
         { withCredentials: true }
-        );
-        
+      );
+
       const user = response.data
+
+      console.log(response)
 
       localStorage.setItem("@zbHouse:user", JSON.stringify(user));
 
@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
       if (error.response) {
         console.log(error.response);
       }
-      console.log("Erro: " + error);
+      console.log(error);
     }
   }
 

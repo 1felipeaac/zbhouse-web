@@ -8,6 +8,7 @@ import { Login } from '../Pages/Login'
 import React from 'react'
 
 export function AppRoutes(){
+
     return (
         <Routes>
             <Route path='/' element={<DashBoard/>}/>
@@ -15,6 +16,7 @@ export function AppRoutes(){
             <Route path='/detalhar/:id' element={<Detalhar/>}/>
             <Route path='/reservar' element={<Reservar/>}/>
             <Route path='/pagamento/:id' element={<Pagamento/>}/>
+            <Route path='/pagamento/' element={<Pagamento/>}/>
             <Route path='/disponibilidade' element={<Disponibilidade/>}/>
         </Routes>
     )

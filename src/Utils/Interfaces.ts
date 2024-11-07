@@ -14,4 +14,29 @@ export interface Reservas {
     parcela: number;
     valor_pagamento: number;
   }
+
+  export interface AxioErrorResponse {
+    message: string;
+    name:    string;
+    config:  Config;
+    code:    string;
+    status:  number;
+}
+
+export interface Config {
+    headers:         Headers;
+    baseURL:         string;
+    withCredentials: boolean;
+    method:          string;
+    url:             string;
+    data:            string;
+}
+
+export interface Headers {
+    Accept:         string;
+    "Content-Type": string;
+}
+
+
+
   

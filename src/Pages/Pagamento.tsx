@@ -7,31 +7,61 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { api } from "../services/api";
 import { useParams, useNavigate } from "react-router-dom";
 import { Reservas } from "../Utils/Interfaces";
-import Cookies from "js-cookie";
+import { AxiosError } from "axios";
+import {PieChart} from "@mui/x-charts/PieChart"
 
+interface CustomAlertProps{
+  message: string,
+  onClose: () => void
+}
+
+interface DataItem{
+  label: string,
+  value: number | undefined
+}
+
+interface Quantia{
+  quantia: number
+}
+
+function CustomAlert ({ message, onClose }:CustomAlertProps) {
+  return (
+      <div className={styles.customAlert}>
+          <p>{message}</p>
+          <button className="material-icons" onClick={onClose}>close</button>
+      </div>
+  );
+};
 export function Pagamento() {
   const [reserva, setReserva] = useState<Reservas | null>(null);
   const [valor, setValor] = useState<number>();
   const [data, setData] = useState<Date>();
+  const [customAlert, setCustonAlert] = useState<boolean>(false)
+  const [messageError, setMessageError] = useState<string>('');
+  const [recebidos, setRecebidos] = useState<Quantia>()
+  const [aReceber, setAReceber] = useState<Quantia>()
+  const [total, setTotal] = useState<DataItem[]>([])
   const [cookie, setCookie] = useState<string>("");
 
   const params = useParams();
 
   const navigate = useNavigate();
 
+
   async function pagarSegundaParcela(event: FormEvent) {
     event.preventDefault();
     try {
-      
-      await api.post(
-        `/pagamentos/${params.id}`,
-        { valor, data }
-      );
-
-      navigate(-1);
-    } catch (e) {
-      console.log(e);
-    }
+      // const response = await fazerRequisicao();
+      const response = await api.post(`/pagamentos/${params.id}`, {valor, data});
+      console.log(response);
+  } catch (error) {
+    setCustonAlert(true)
+      const erro = error as AxiosError
+      if(erro){
+        const message:string = erro.response?.data as string
+        setMessageError(message)  
+      }
+  }
   }
 
   function handleValorParcela(event: ChangeEvent<HTMLInputElement>) {
@@ -43,17 +73,60 @@ export function Pagamento() {
     setData(new Date(valor));
   }
 
-  useEffect(() => {
-    async function pagamentoSegundaParcela() {
-      const { data } = await api.get(`/reservas/${params.id}`);
+  function fecharAlerta(){
+    setCustonAlert(false);
+    setMessageError('')
+  }
 
-      setReserva(data);
+  useEffect(() => {
+    async function detalharReserva() {
+      if(params.id != undefined){
+        const { data } = await api.get(`/reservas/${params.id}`);
+        setReserva(data);
+      }else{
+        const recebidosResponse = await api.get("pagamentos/recebidos")
+        setRecebidos(recebidosResponse.data)
+        const aReceberResponse = await api.get("pagamentos/aReceber")
+        setAReceber(aReceberResponse.data)
+      }
     }
-    pagamentoSegundaParcela();
+    detalharReserva();
   }, [params.id]);
+
+  useEffect(()=>{
+    function criarListaCharts(){
+      let dataCharts: DataItem[] = [];
+        if (recebidos != undefined && aReceber != undefined){
+          dataCharts = [
+            {label: "Recebidos", value: recebidos.quantia}, 
+            {label: "A Receber", value: aReceber.quantia}]
+          }
+        setTotal(dataCharts)
+    }
+
+    criarListaCharts()
+
+  },[aReceber, recebidos])
   return (
     <Default>
+      {customAlert == true && <CustomAlert message={messageError} onClose={fecharAlerta}/>}
       <Main>
+        {params.id === undefined && 
+          <div>
+             {total && <PieChart
+              colors={['#276be1', '#f5c21f']}
+              series={[
+                {
+                  data: total,
+                  highlightScope: { fade: 'global', highlight: 'item' },
+                  faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+                  
+                },
+              ]}
+              height={200}
+            />}
+          </div>
+        } 
         {reserva && (
           <Form>
             <Inputs

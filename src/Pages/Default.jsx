@@ -3,6 +3,7 @@ import { Sidebar } from "../components/Sidebar/Sidebar";
 import { Main } from "../components/Main/Main";
 
 import styles from './Default.module.css';
+import React from "react";
 export function Default(props) {
   return (
     <div className={styles.page}>
