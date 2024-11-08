@@ -2,7 +2,7 @@ import { Default } from "./Default";
 import { Main } from "../components/Main/Main";
 import { Form, Inputs } from "../components/Main/Form";
 import {Reservas} from "../Utils/Interfaces"
-import React, { FormEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { api } from "../services/api";
 
 export function Reservar() {
@@ -13,6 +13,35 @@ export function Reservar() {
   const [dataPagamento, setDataPagamento] = useState<Date>()
   const [valor, setValor] = useState<number>()
   const [desconto, setDesconto] = useState<number>()
+
+  function handleOnChangeNome(event: ChangeEvent<HTMLInputElement>){
+    const nome = (event.target as HTMLInputElement).value;
+    setNome(nome)
+  }
+  function handleOnChangeDocumento(event: ChangeEvent<HTMLInputElement>){
+    const doc = (event.target as HTMLInputElement).value;
+    setDocumento(doc)
+  }
+  function handleOnChangeCheckin(event: ChangeEvent<HTMLInputElement>){
+    const checkin = (event.target as HTMLInputElement).value;
+    setCheckin(new Date(checkin))
+  }
+  function handleOnChangeCheckout(event: ChangeEvent<HTMLInputElement>){
+    const checkout = (event.target as HTMLInputElement).value;
+    setCheckout(new Date(checkout))
+  }
+  function handleOnChangeValorPrcela(event: ChangeEvent<HTMLInputElement>){
+    const valor = (event.target as HTMLInputElement).value;
+    setValor(Number(valor))
+  }
+  function handleOnChangeDataPagamento(event: ChangeEvent<HTMLInputElement>){
+    const data = (event.target as HTMLInputElement).value;
+    setDataPagamento(new Date(data))
+  }
+  function handleOnChangeDesconto(event: ChangeEvent<HTMLInputElement>){
+    const desconto = (event.target as HTMLInputElement).value;
+    setValor(Number(desconto))
+  }
 
   async function handleCriarReserva(event: FormEvent){
     event.preventDefault();
@@ -41,14 +70,14 @@ export function Reservar() {
     <Default>
       <Main>
         <Form>
-          <Inputs desc="Nome" type="text" required={true} onChange={e => setNome(e.target.value)}/>
-          <Inputs desc="Documento" type="text" required={true} onChange={e => setDocumento(e.target.value)}/>
-          <Inputs desc="Checkin" type="datetime-local" required={true} onChange={e => setCheckin(new Date(e.target.value))}/>
-          <Inputs desc="Checkout" type="datetime-local" required={true} onChange={e => setCheckout(new Date(e.target.value))}/>
-          <Inputs desc="Valor da Parcela" type="number" required={true} onChange={e => setValor(Number(e.target.value))}/>
-          <Inputs desc="Data Pagamento" type="datetime-local" required={true} onChange={e => setDataPagamento(new Date(e.target.value))}/>
+          <Inputs desc="Nome" type="text" required={true} onChange={handleOnChangeNome}/>
+          <Inputs desc="Documento" type="text" required={true} onChange={handleOnChangeDocumento}/>
+          <Inputs desc="Checkin" type="datetime-local" required={true} onChange={handleOnChangeCheckin}/>
+          <Inputs desc="Checkout" type="datetime-local" required={true} onChange={handleOnChangeCheckout}/>
+          <Inputs desc="Valor da Parcela" type="number" required={true} onChange={handleOnChangeValorPrcela}/>
+          <Inputs desc="Data Pagamento" type="datetime-local" required={true} onChange={handleOnChangeDataPagamento}/>
           <Inputs desc="Com desconto" type="checkbox" checkbox="checkbox" required={false}/>
-          <Inputs desc="Desconto %" type="number" required={false} onChange={e => setDesconto(Number(e.target.value))}/>
+          <Inputs desc="Desconto %" type="number" required={false} onChange={handleOnChangeDesconto}/>
           <Inputs type="submit" onClick={handleCriarReserva}/>
         </Form>
       </Main>

@@ -13,5 +13,15 @@
         border: none;
         color: #721c24;
         margin: 1px;
+        cursor: pointer;
     }
+}
+
+.pieChart{
+    display: flex;
+    background-color: white;
+
+    margin: 1rem;
+    padding: .5rem;
+    
 }
