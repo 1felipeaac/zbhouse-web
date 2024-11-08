@@ -1,4 +1,5 @@
 import React from "react";
+// @ts-ignore
 import styles from "./Nav.module.css";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -9,6 +10,7 @@ import { useAuth } from "../../hooks/auth";
 
 export function Nav() {
   const isSmallScreen = window.innerWidth <= 768;
+  // @ts-ignore
   const { desconectar } = useAuth();
   function handleLogout() {
     desconectar();

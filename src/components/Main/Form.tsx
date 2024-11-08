@@ -1,7 +1,7 @@
 // @ts-ignore
 import styles from "./Form.module.css";
 import { useLocation } from "react-router-dom";
-import { ReactNode, useEffect } from "react";
+import { DetailedHTMLProps, InputHTMLAttributes, ReactNode, useEffect } from "react";
 import React from "react";
 
 interface InputsProps{
@@ -11,7 +11,8 @@ interface InputsProps{
   required?: boolean,
   disable?: boolean,
   onChange?: React.ChangeEventHandler<HTMLInputElement>,
-  onClick?: React.MouseEventHandler<HTMLInputElement>
+  onClick?: React.MouseEventHandler<HTMLInputElement>,
+  onChecked?: boolean,
   value?: string
 }
 
@@ -23,19 +24,14 @@ export function Inputs({
   disable,
   onChange,
   onClick,
+  onChecked,
   value
 }: InputsProps) {
   const inputClasses = checkbox
     ? `${styles.inputs} ${styles[checkbox]}`
     : styles.inputs;
 
-  // function handleInputInvalid(event: React.ChangeEvent<HTMLInputElement>) {
-  //   event.target.setCustomValidity("Campo obrigatório!");
-  // }
 
-  // function handleChangeValue(event: React.ChangeEvent<HTMLInputElement>) {
-  //   event.target.setCustomValidity("");
-  // }
   return (
     <div className={inputClasses}>
       <span>{desc}</span>
@@ -44,7 +40,7 @@ export function Inputs({
         required={required}
         disabled={disable}
         value={value}
-        // onInvalid={handleInputInvalid}
+        checked={onChecked}
         onChange={onChange}
         onClick={onClick}
       />

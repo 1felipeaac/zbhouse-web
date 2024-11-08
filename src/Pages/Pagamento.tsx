@@ -10,11 +10,7 @@ import { Reservas } from "../Utils/Interfaces";
 import { AxiosError } from "axios";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { PieSeriesType } from '@mui/x-charts'
-
-interface CustomAlertProps {
-  message: string;
-  onClose: () => void;
-}
+import { CustomAlert } from "../components/Main/CustomAlert";
 
 interface DataItem {
   label: string;
@@ -25,46 +21,32 @@ interface Quantia {
   quantia: number;
 }
 
-function CustomAlert({ message, onClose }: CustomAlertProps) {
-  return (
-    <div className={styles.customAlert}>
-      <p>{message}</p>
-      <button className="material-icons" onClick={onClose}>
-        close
-      </button>
-    </div>
-  );
-}
 export function Pagamento() {
   const [reserva, setReserva] = useState<Reservas | null>(null);
   const [valor, setValor] = useState<number>();
   const [data, setData] = useState<Date>();
   const [customAlert, setCustonAlert] = useState<boolean>(false);
-  const [messageError, setMessageError] = useState<string>("");
+  const [messageAlert, setMessageAlert] = useState<string>("");
   const [recebidos, setRecebidos] = useState<Quantia>();
   const [aReceber, setAReceber] = useState<Quantia>();
   const [total, setTotal] = useState<DataItem[]>([]);
-  const [cookie, setCookie] = useState<string>("");
 
   const params = useParams();
-
-  const navigate = useNavigate();
 
   async function pagarSegundaParcela(event: FormEvent) {
     event.preventDefault();
     try {
-      // const response = await fazerRequisicao();
-      const response = await api.post(`/pagamentos/${params.id}`, {
+      await api.post(`/pagamentos/${params.id}`, {
         valor,
         data,
       });
-      console.log(response);
+      setMessageAlert("Pagamento registrado com sucesso!");
     } catch (error) {
       setCustonAlert(true);
       const erro = error as AxiosError;
       if (erro) {
         const message: string = erro.response?.data as string;
-        setMessageError(message);
+        setMessageAlert(message);
       }
     }
   }
@@ -78,10 +60,16 @@ export function Pagamento() {
     setData(new Date(valor));
   }
 
-  function fecharAlerta() {
-    setCustonAlert(false);
-    setMessageError("");
-  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCustonAlert(false);
+      setMessageAlert("");
+    }, 5500);
+  
+    return () => clearTimeout(timer);
+  }, [messageAlert]);
+
 
   useEffect(() => {
     async function detalharReserva() {
@@ -115,8 +103,8 @@ export function Pagamento() {
   return (
     <Default>
       <Main>
-        {customAlert == true && (
-          <CustomAlert message={messageError} onClose={fecharAlerta} />
+        {messageAlert && (
+          <CustomAlert customAlert={customAlert} message={messageAlert} />
         )}
         {params.id === undefined && (
           <div className={styles.pieChart}>

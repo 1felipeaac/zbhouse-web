@@ -47,7 +47,7 @@ export function Detalhar() {
     if (reserva != null){
 
       if(reserva.pagamentos.length === 1){
-        setSegundaParcela({data_pagamento: reserva.checkout, parcela: 2, valor_pagamento: 0})
+        setSegundaParcela({data_pagamento: null, parcela: 2, valor_pagamento: 0})
       }
 
       reserva.pagamentos.map((pagamento, index) => {
@@ -60,14 +60,16 @@ export function Detalhar() {
       })
       const verificaDesconto = reserva.desconto > 0 ? "Sim": "Não"
       if (primeiraParcela && segundaParcela){
+        const primeiraParcelaToString = primeiraParcela.data_pagamento == null ? "Em aberto" : primeiraParcela.data_pagamento.toString()
+        const segundaParcelaToString = segundaParcela.data_pagamento == null ? "Em aberto" : segundaParcela.data_pagamento.toString()
         setLines([
           reserva.documento, 
           reserva.checkin.toString(), 
           reserva.checkout.toString(), 
           primeiraParcela.valor_pagamento.toFixed(2),
-          primeiraParcela.data_pagamento.toString(),
+          primeiraParcelaToString,
           segundaParcela.valor_pagamento.toFixed(2),
-          segundaParcela.data_pagamento.toString(),
+          segundaParcelaToString,
           verificaDesconto,
           reserva.desconto.toFixed(0)
         ])

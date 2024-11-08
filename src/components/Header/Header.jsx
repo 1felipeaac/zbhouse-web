@@ -1,3 +1,5 @@
+import React from "react";
+// @ts-ignore
 import styles from "./Header.module.css";
 import { Logo } from "./Logo";
 import { Nav } from "./Nav";

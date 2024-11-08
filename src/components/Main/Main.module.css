@@ -1,6 +1,6 @@
 .main {
   background-color: var(--yellow-200-opacity);
-  height: auto;
+  height: 100%;
 }
 
 @media (max-width: 768px) {

@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
 
       const user = response.data
 
-      console.log(response)
+      // console.log(response)
 
       localStorage.setItem("@zbHouse:user", JSON.stringify(user));
 
@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
   function desconectar() {
     localStorage.removeItem("@zbHouse:user");
 
-    setData("");
+    setData({});
   }
 
   useEffect(() => {

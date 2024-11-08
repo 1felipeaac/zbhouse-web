@@ -1,0 +1,23 @@
+.customErrorAlert{
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    p{
+        text-align: center;
+    }
+}
+
+.customSuccessAlert{
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #dbf8d7;
+    color: #1f721c;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    p{
+        text-align: center;
+    }
+}

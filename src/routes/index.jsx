@@ -8,8 +8,6 @@ export function Routes() {
   // @ts-ignore
   const { user } = useAuth();
 
-  console.log(user)
-
   return (
     <BrowserRouter>{user ? <AppRoutes /> : <AuthRoutes />}</BrowserRouter>
   );

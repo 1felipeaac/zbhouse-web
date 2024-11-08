@@ -10,9 +10,14 @@ export interface Reservas {
   }
   
   export interface Pagamentos {
-    data_pagamento: Date;
+    data_pagamento: Date | null;
     parcela: number;
     valor_pagamento: number;
+  }
+
+  export interface FieldError{
+    field: string;
+    message: string;
   }
 
   export interface AxioErrorResponse {
@@ -36,6 +41,7 @@ export interface Headers {
     Accept:         string;
     "Content-Type": string;
 }
+
 
 
 
