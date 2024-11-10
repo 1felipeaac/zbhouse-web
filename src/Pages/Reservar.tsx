@@ -113,10 +113,10 @@ export function Reservar() {
         <Form>
           <Inputs desc="Nome" type="text" required={true} onChange={handleOnChangeNome}/>
           <Inputs desc="Documento" type="text" required={true} onChange={handleOnChangeDocumento}/>
-          <Inputs desc="Checkin" type="datetime-local" required={true} onChange={handleOnChangeCheckin}/>
-          <Inputs desc="Checkout" type="datetime-local" required={true} onChange={handleOnChangeCheckout}/>
+          <Inputs desc="Checkin" type="date" required={true} onChange={handleOnChangeCheckin}/>
+          <Inputs desc="Checkout" type="date" required={true} onChange={handleOnChangeCheckout}/>
           <Inputs desc="Valor da Parcela" type="number" required={true} onChange={handleOnChangeValorPrcela}/>
-          <Inputs desc="Data Pagamento" type="datetime-local" required={true} onChange={handleOnChangeDataPagamento}/>
+          <Inputs desc="Data Pagamento" type="date" required={true} onChange={handleOnChangeDataPagamento}/>
           <Inputs desc="Com desconto" type="checkbox" checkbox="checkbox" required={false} onChecked={comDesconto} onChange={handleOnChange} />
           <Inputs desc="Desconto %" type="number" required={false} onChange={handleOnChangeDesconto} disable={!comDesconto}/>
           <Inputs type="submit" onClick={handleCriarReserva}/>

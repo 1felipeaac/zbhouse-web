@@ -58,7 +58,7 @@ function ServerDay(props: PickersDayProps<Dayjs> & { highlightedDays?: number[] 
       key={props.day.toString()}
       // color='info'
       overlap="circular"
-      badgeContent={isSelected ? '🌞' : undefined}
+      badgeContent={isSelected ? '✅' : '🚫'}
     >
       <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
     </Badge>
