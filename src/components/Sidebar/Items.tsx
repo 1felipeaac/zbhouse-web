@@ -35,7 +35,7 @@ export function Items({desc, page, icon}: ItemsProps) {
   return (
     <Link id={desc} className={styles.button} to={page}>
       <span className="material-icons">{icon}</span>
-      <div>{desc}</div>
+      <div className={styles.descricao}>{desc}</div>
     </Link>
   );
 }

@@ -4,9 +4,9 @@ import ZBHouseLogo from "../../assets/zbHouseLogo.png"
 import React from "react";
 export function Logo() {
   return (
-    <div className={styles.logo}>
+    <div id="logo" className={styles.logo}>
       <img src={ZBHouseLogo} />
-      <strong>Reservas</strong>
+      <strong id="reservas">Reservas</strong>
     </div>
   );
 }

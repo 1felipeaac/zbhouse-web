@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Card } from './Card'
 // @ts-ignore
 import styles from './Main.module.css'
 
-export function Main(props){
+interface MainProps{
+    children: ReactNode;
+}
+
+export function Main({children}:MainProps){
     return(
         <main className={styles.main}>
-            {props.children}
+            {children}
         </main>
     )
 }

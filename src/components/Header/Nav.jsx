@@ -15,6 +15,24 @@ export function Nav() {
     desconectar();
   }
 
+  
+  function handleHideSideBar(){
+    const elementos = document.getElementsByClassName("_descricao_1kqe3_123")
+    const reservas = document.getElementById("reservas")
+    const logo = document.getElementById("logo")
+    const sidebar = document.getElementById("sidebar")
+
+    reservas?.classList.toggle(`${styles.sidebarVisibility}`)
+    
+
+    const elementosArray = Array.from(elementos)
+  
+    elementosArray.map((elemento)=>{
+      // elemento.setAttribute("style", "visibility: hidden;")
+      elemento.classList.toggle(`${styles.sidebarVisibility}`)
+    })
+
+  }
 
   return (
     <nav className={styles.nav}>
@@ -22,9 +40,10 @@ export function Nav() {
         sx={{
           p: "10px",
           color: "white",
-          display: isSmallScreen ? "none" : "inline",
+          // display: isSmallScreen ? "none" : "inline",
         }}
         aria-label="menu"
+        onClick={handleHideSideBar}
       >
         <MenuIcon />
       </IconButton>

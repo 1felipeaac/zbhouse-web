@@ -14,3 +14,11 @@
     flex: 1;
   }
 }
+
+.sidebarVisibility{
+  visibility: hidden;
+}
+
+#logo, #sidebar{
+  width: 30rem;
+}

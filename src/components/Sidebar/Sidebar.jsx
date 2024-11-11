@@ -7,7 +7,7 @@ import { descs, iconsSideBar, pages } from '../../Utils/Lists'
 
 export function Sidebar(){
     return (
-        <aside className={styles.sidebar}>
+        <aside id='sidebar' className={styles.sidebar}>
 
             {descs.map((desc, index) => {
                 const icon = iconsSideBar[index]

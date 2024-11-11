@@ -3,8 +3,8 @@
     border: 1px solid var(--blue-100);
 
     min-width: 14.5rem;
-    /* max-width: 20rem; */
-    width: 100%;
+    max-width: 20rem;
+    /* width: 100%; */
 
     display: flex;
     flex-direction: column;
@@ -112,6 +112,10 @@
 }
 
 @media (max-width: 768px) {
-   
+   .card{
+    /* width: 100%; */
+    max-width: none;
+    
+   }
     
 }

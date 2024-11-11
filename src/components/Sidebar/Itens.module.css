@@ -54,9 +54,12 @@
   .button {
     width: 5rem;
     padding: 0 1.75rem;
-    > div {
-      /* display: none; */
+    /* > div {
+     
       visibility: hidden;
-    }
+    } */
+  }
+  .descricao{
+    visibility: hidden;
   }
 }
