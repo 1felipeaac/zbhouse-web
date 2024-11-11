@@ -10,11 +10,12 @@ import { useAuth } from "../../hooks/auth";
 
 export function Nav() {
   const isSmallScreen = window.innerWidth <= 768;
-  // @ts-ignore
   const { desconectar } = useAuth();
   function handleLogout() {
     desconectar();
   }
+
+
   return (
     <nav className={styles.nav}>
       <IconButton

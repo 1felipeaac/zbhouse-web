@@ -3,11 +3,21 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 import { api } from "../services/api";
 
-const AuthContext = createContext({});
+interface UserData{
+  user: string;
+}
+
+interface AuthContextType{
+  autenticar: (credentials: { login: string, senha: string }) => void;
+  desconectar: () => void;
+  user: UserData;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }) {
-  const [data, setData] = useState("");
-  async function autenticar({ login, senha }) {
+  const [data, setData] = useState<UserData>({user: null});
+  async function autenticar({ login, senha }: { login: string, senha: string }) {
     try {
       const response = await api.post(
         "/login",
@@ -34,7 +44,7 @@ export function AuthProvider({ children }) {
   function desconectar() {
     localStorage.removeItem("@zbHouse:user");
 
-    setData({});
+    setData("");
   }
 
   useEffect(() => {
@@ -56,5 +66,9 @@ export function AuthProvider({ children }) {
 
 export function useAuth() {
   const context = useContext(AuthContext);
+
+  if(!context){
+    throw new Error("Sem contexto")
+  }
   return context;
 }
