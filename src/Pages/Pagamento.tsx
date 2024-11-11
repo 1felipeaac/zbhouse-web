@@ -143,13 +143,13 @@ export function Pagamento() {
             />
             <Inputs
               desc="Checkin"
-              type="datetime-local"
+              type="date"
               disable={true}
               value={reserva.checkin.toString()}
             />
             <Inputs
               desc="Checkout"
-              type="datetime-local"
+              type="date"
               disable={true}
               value={reserva.checkout.toString()}
             />
@@ -161,7 +161,7 @@ export function Pagamento() {
             />
             <Inputs
               desc="Data do Pagamento"
-              type="datetime-local"
+              type="date"
               disable={true}
               value={reserva.pagamentos[0].data_pagamento.toString()}
             />
@@ -173,7 +173,7 @@ export function Pagamento() {
             />
             <Inputs
               desc="Data do Pagamento"
-              type="datetime-local"
+              type="date"
               required={true}
               onChange={handleDataPagamento}
             />
