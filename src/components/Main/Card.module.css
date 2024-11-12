@@ -52,6 +52,14 @@
     display: flex;
     margin: 1rem 0;
     gap:.5rem;
+
+    > button{
+        padding: 0;
+        background-color: transparent;
+        color: rgb(245, 108, 16);
+        border: none;
+        cursor: pointer
+    }
     
 }
 
@@ -75,7 +83,8 @@
     background-color: var(--gray-900);
 }
 
-.bar:last-child{
+.bar:nth-child(2){
+    
     span{
         color: var(--gray-900);
     }

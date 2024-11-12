@@ -5,7 +5,7 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { api } from "../services/api";
 import { AxiosError } from "axios";
 import { CustomAlert } from "../components/Main/CustomAlert";
-import { FieldError } from "../Utils/Interfaces";
+import { handlerCustomError } from "../Utils/Utils";
 
 export function Reservar() {
   const [nome, setNome] = useState<string>()
@@ -76,24 +76,8 @@ export function Reservar() {
       await api.post("/reservas/", reserva)
       setMessageAlert("Reserva feita com sucesso")
     } catch (error) {
-      setCustonAlert(true);
       const erro = error as AxiosError;
-      let listError: string[] = [];
-      if (erro) {
-        if (erro.response?.data) {
-          if (Array.isArray(erro.response.data)) {
-              erro.response.data.map((field: FieldError) => {
-                const errorString = `${field.field.toLocaleUpperCase()}: ${field.message}`
-                listError.push(errorString)
-              
-            });
-            setMessageAlert(listError)
-          } else{
-            setMessageAlert([erro.response.data as string])
-            
-          }
-        }
-      }
+      handlerCustomError(erro, setCustonAlert, setMessageAlert)
     }
   }
   useEffect(() => {
@@ -105,7 +89,7 @@ export function Reservar() {
     return () => clearTimeout(timer);
   }, [messageAlert]);
   return (
-    <Default>
+    <Default navBar={{placeholder:"Busca por data. dd/mm/aaaa"}}>
       <Main>
         {messageAlert.length > 0 && (
           <CustomAlert customAlert={customAlert} message={messageAlert} />

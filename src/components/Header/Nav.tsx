@@ -1,52 +1,40 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 // @ts-ignore
 import styles from "./Nav.module.css";
 import { IconButton, InputBase, Paper } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+// import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import Logout from "@mui/icons-material/Logout";
 
 import { useAuth } from "../../hooks/auth";
 
-export function Nav() {
+
+export interface NavProps{
+  onSearch? : () => void
+  onChange?: React.ChangeEventHandler<HTMLInputElement>,
+  placeholder?: string
+}
+
+export function Nav({onSearch, onChange, placeholder}:NavProps) {
   const isSmallScreen = window.innerWidth <= 768;
   const { desconectar } = useAuth();
   function handleLogout() {
     desconectar();
   }
 
-  
-  function handleHideSideBar(){
-    const elementos = document.getElementsByClassName("_descricao_1kqe3_123")
-    const reservas = document.getElementById("reservas")
-    const logo = document.getElementById("logo")
-    const sidebar = document.getElementById("sidebar")
-
-    reservas?.classList.toggle(`${styles.sidebarVisibility}`)
-    
-
-    const elementosArray = Array.from(elementos)
-  
-    elementosArray.map((elemento)=>{
-      // elemento.setAttribute("style", "visibility: hidden;")
-      elemento.classList.toggle(`${styles.sidebarVisibility}`)
-    })
-
-  }
 
   return (
     <nav className={styles.nav}>
-      <IconButton
+      {/* <IconButton
         sx={{
           p: "10px",
           color: "white",
           // display: isSmallScreen ? "none" : "inline",
         }}
         aria-label="menu"
-        onClick={handleHideSideBar}
       >
         <MenuIcon />
-      </IconButton>
+      </IconButton> */}
       <Paper
         component="form"
         sx={{
@@ -58,10 +46,11 @@ export function Nav() {
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder="Buscar"
+          placeholder={placeholder}
           inputProps={{ "aria-label": "search google maps" }}
+          onChange={onChange}
         />
-        <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+        <IconButton type="button" sx={{ p: "10px" }} aria-label="search" onClick={onSearch}>
           <SearchIcon />
         </IconButton>
       </Paper>

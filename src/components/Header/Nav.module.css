@@ -16,9 +16,19 @@
 }
 
 .sidebarVisibility{
-  visibility: hidden;
+  /* visibility: hidden; */
+  display: none;
 }
 
-#logo, #sidebar{
-  width: 30rem;
+.sidebarWidth{
+  width: 7rem;
+}
+
+.mainWidth{
+  width: 100%;
+}
+
+.wrapperWidth{
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
 }

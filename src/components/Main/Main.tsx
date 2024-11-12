@@ -9,7 +9,7 @@ interface MainProps{
 
 export function Main({children}:MainProps){
     return(
-        <main className={styles.main}>
+        <main id='main' className={styles.main}>
             {children}
         </main>
     )

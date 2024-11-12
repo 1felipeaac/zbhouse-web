@@ -11,6 +11,7 @@ import { AxiosError } from "axios";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { PieSeriesType } from '@mui/x-charts'
 import { CustomAlert } from "../components/Main/CustomAlert";
+import { handlerCustomError } from "../Utils/Utils";
 
 interface DataItem {
   label: string;
@@ -42,12 +43,8 @@ export function Pagamento() {
       });
       setMessageAlert("Pagamento registrado com sucesso!");
     } catch (error) {
-      setCustonAlert(true);
       const erro = error as AxiosError;
-      if (erro) {
-        const message: string = erro.response?.data as string;
-        setMessageAlert(message);
-      }
+      handlerCustomError(erro, setCustonAlert, setMessageAlert)
     }
   }
 

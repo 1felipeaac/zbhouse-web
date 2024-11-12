@@ -14,6 +14,7 @@ export function AppRoutes(){
             <Route path='/' element={<DashBoard/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/detalhar/:id' element={<Detalhar/>}/>
+            {/* <Route path='/detalhar' element={<Detalhar/>}/> */}
             <Route path='/reservar' element={<Reservar/>}/>
             <Route path='/pagamento/:id' element={<Pagamento/>}/>
             <Route path='/pagamento/' element={<Pagamento/>}/>

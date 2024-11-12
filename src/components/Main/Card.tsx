@@ -64,8 +64,10 @@ interface CardProps {
   children?: ReactNode[];
   detail?: string;
   payment?: string;
-  pago?: boolean
+  pago?: boolean;
   onHandleClickDetail?: () => void;
+  deleted?: boolean;
+  onHandleClickDelete?: () => void;
 }
 
 export function Card({
@@ -76,7 +78,9 @@ export function Card({
   detail,
   payment,
   onHandleClickDetail,
-  pago
+  pago,
+  deleted,
+  onHandleClickDelete
 }: CardProps) {
   
 
@@ -107,6 +111,7 @@ export function Card({
           />
         )}
         {payment && <Button icon="paid" button="Pagar" page={payment} pago={pago}/>}
+        {deleted && <button className="material-icons" onClick={onHandleClickDelete}>delete_outline</button>}
       </div>
     </div>
   );
