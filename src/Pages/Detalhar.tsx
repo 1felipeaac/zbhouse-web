@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { Pagamentos, Reservas } from "../Utils/Interfaces";
 import React from "react";
 import { icons, titulos } from "../Utils/Lists";
+import { format } from "date-fns";
+import { formatDate } from "../Utils/Utils";
 
 function Voltar() {
   return (
@@ -60,12 +62,12 @@ export function Detalhar() {
       })
       const verificaDesconto = reserva.desconto > 0 ? "Sim": "Não"
       if (primeiraParcela && segundaParcela){
-        const primeiraParcelaToString = primeiraParcela.data_pagamento == null ? "Em aberto" : primeiraParcela.data_pagamento.toString()
-        const segundaParcelaToString = segundaParcela.data_pagamento == null ? "Em aberto" : segundaParcela.data_pagamento.toString()
+        const primeiraParcelaToString = primeiraParcela.data_pagamento == null ? "Em aberto" : formatDate(primeiraParcela.data_pagamento)
+        const segundaParcelaToString = segundaParcela.data_pagamento == null ? "Em aberto" : formatDate(segundaParcela.data_pagamento)
         setLines([
           reserva.documento, 
-          reserva.checkin.toString(), 
-          reserva.checkout.toString(), 
+          formatDate(reserva.checkin),
+          formatDate(reserva.checkout),
           primeiraParcela.valor_pagamento.toFixed(2),
           primeiraParcelaToString,
           segundaParcela.valor_pagamento.toFixed(2),

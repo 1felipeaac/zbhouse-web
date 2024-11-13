@@ -15,9 +15,14 @@
   --silver-100: #e2e2e2;
   --yellow-300: #f5c21f;
   --yellow-200: #fee543;
-  --yellow-200-opacity: #edc023
-  ;
+  --yellow-200-opacity: #edc023;
+  --orange-200:  #f56c10;
+  --green: #1f721c;
+  --green-100: #dbf8d7;
   --white: #ffffff;
+  --red:#ff0000;
+  --red-500:#550c0c;
+  --red-100:#f8d7da;
 }
 
 * {

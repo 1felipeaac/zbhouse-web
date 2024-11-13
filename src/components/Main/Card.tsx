@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./Card.module.css";
 import { ReactNode, useEffect } from "react";
 import React from "react";
+import { DeleteAlert } from "./CustomAlert";
 
 interface TitleProps{
   id?: number;
@@ -68,6 +69,8 @@ interface CardProps {
   onHandleClickDetail?: () => void;
   deleted?: boolean;
   onHandleClickDelete?: () => void;
+  handleConfirmDelete?: () => void;
+  handleCancelDelete?: () => void;
 }
 
 export function Card({
@@ -80,7 +83,7 @@ export function Card({
   onHandleClickDetail,
   pago,
   deleted,
-  onHandleClickDelete
+  onHandleClickDelete,
 }: CardProps) {
   
 

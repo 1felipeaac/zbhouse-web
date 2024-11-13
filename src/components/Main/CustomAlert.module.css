@@ -1,8 +1,8 @@
 .customErrorAlert{
-    border: 1px solid #ccc;
+    border: 1px solid var(--gray-600);
     padding: 10px;
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color:var(--red-100);
+    color: var(--red-500);
     border-radius: 4px;
     margin-bottom: 10px;
     p{
@@ -11,13 +11,49 @@
 }
 
 .customSuccessAlert{
-    border: 1px solid #ccc;
+    border: 1px solid var(--gray-600);
     padding: 10px;
-    background-color: #dbf8d7;
-    color: #1f721c;
+    background-color: var(--green-100);
+    color: var(--green);
     border-radius: 4px;
     margin-bottom: 10px;
     p{
         text-align: center;
+    }
+}
+
+.deleteAlert{
+    background-color: var(--orange-200);
+    padding: .5rem;
+}
+
+.divisor{
+    display: flex;
+    justify-content: space-evenly;
+    /* flex-direction: column; */
+    height: 2.5rem;
+    align-items: center;
+    background-color: var(--white);
+    color: var(--blue);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.buttonsAlert{
+    display: flex;
+    gap: .5rem;
+
+    button{
+        background-color: transparent;
+        border: none;
+        cursor: pointer
+    };
+
+    button:first-child{
+        color: var(--green);
+    };
+
+    button:last-child{
+        color: var(--red);
     }
 }

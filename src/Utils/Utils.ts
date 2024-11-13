@@ -1,8 +1,9 @@
 import { AxiosError } from 'axios';
 import { format } from 'date-fns';
 import { FieldError } from './Interfaces';
+
 export function formatDate(data: Date): string {
-    return format(data, "dd/MM/yyyy HH:mm")
+    return format(data, "dd/MM/yyyy")
 }
 
 export const valueFormatter = (item: { value: number }) => `${item.value}%`;

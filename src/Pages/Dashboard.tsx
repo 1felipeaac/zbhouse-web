@@ -10,12 +10,17 @@ import React from "react";
 import { Reservas } from "../Utils/Interfaces";
 import { icons, titulos } from "../Utils/Lists";
 import { AxiosError } from "axios";
-import { CustomAlert } from "../components/Main/CustomAlert";
-import { handlerCustomError } from "../Utils/Utils";
+import { CustomAlert, DeleteAlert } from "../components/Main/CustomAlert";
+import { formatDate, handlerCustomError } from "../Utils/Utils";
 
 
 const iconsDB = icons.slice(0,3);
 const titulosDB = titulos.slice(0,3)
+
+interface ReservaSelected{
+  id: number;
+  nome: string
+}
 
 
 export function DashBoard() {
@@ -27,7 +32,9 @@ export function DashBoard() {
   const [buscaReservas, setBuscaReservas] = useState([])
   const [messageAlert, setMessageAlert] = useState<string[] | string>([]);
   const [customAlert, setCustonAlert] = useState<boolean>(false);
-
+  const [deleteAlert, setDeleteAlert] = useState<boolean>(false)
+  const [reservaSelected, setReservaSelected] = useState<ReservaSelected>({id: 0, nome: '' })
+  
   async function handleBusca(){
 
     try {
@@ -69,13 +76,30 @@ export function DashBoard() {
     }
   }
 
-  async function handleDelete(id: number): Promise<void> {
-    // console.log(id)
+  function handleDeleteAlert({id, nome}:ReservaSelected) {
+    setReservaSelected({id, nome})
+    setDeleteAlert(true)
+  }
+
+  async function handleDelete(id: number){
     try {
       await api.delete(`/reservas/${id}`);
+      setDeleteAlert(false)
+      setMessageAlert(`Reserva de ${reservaSelected.nome} excluída com sucesso!`)
+      setReservaSelected({id: 0, nome: '' })
     } catch (error) {
+      setDeleteAlert(false)
+      const erro = error as AxiosError
+      if(erro){
+        handlerCustomError(erro, setCustonAlert, setMessageAlert)
+      }
       throw new Error("Não foi possível excluir o registro")
     }
+  }
+  
+  function handleBlocked(){
+    setDeleteAlert(false)
+    setReservaSelected({id: 0, nome: '' })
   }
 
   useEffect(()=>{
@@ -83,9 +107,11 @@ export function DashBoard() {
       const response = await api.get(`/reservas/todos?page=${pagAtual}`);
       const reservasData = response.data.content;
       setReservas(reservasData);
+      
     }
   
     paginacao();
+   
   },[pagAtual])
 
 
@@ -94,13 +120,15 @@ export function DashBoard() {
       try{
         const response = await api.get("/reservas/todos");
         const totalPages = response.data.totalPages
+        // const reservasData = response.data.content;
+        // setReservas(reservasData);
         setPaginas(totalPages)
       }catch(err){
         console.log(err);
       }
     }
-
     listarReservas();
+    
   }, []);
 
   useEffect(() => {
@@ -108,11 +136,16 @@ export function DashBoard() {
   },[buscaReservas])
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer = setTimeout(async () => {
       setCustonAlert(false);
       setMessageAlert("");
-    }, 5500);
-  
+      const response = await api.get("/reservas/todos");
+      const reservasData = response.data.content;
+      const totalPages = response.data.totalPages
+      setPaginas(totalPages)
+      setReservas(reservasData);
+    }, 4500);
+    
     return () => clearTimeout(timer);
   }, [messageAlert]);
 
@@ -122,13 +155,16 @@ export function DashBoard() {
       {messageAlert.length > 0 && (
           <CustomAlert customAlert={customAlert} message={messageAlert} />
         )}
+      {deleteAlert === true &&  reservaSelected.id != 0 && (
+          <DeleteAlert nome={reservaSelected.nome} onhandleConfirm={() => handleDelete(reservaSelected.id)} onhandleBlocked={handleBlocked}/>
+        )}
         <Carrocel avancar={handleAvancarPagina} voltar={handleVoltarPagina} pagina={pagAtual+1}>
-          {reservas &&
+          {reservas.length > 0 ?
             reservas.map((reserva: Reservas, index: number) => {
               const lines = [
                 reserva.documento,
-                format(reserva.checkin, "dd/MM/yyyy"),
-                format(reserva.checkout, "dd/MM/yyyy"),
+                formatDate(reserva.checkin),
+                formatDate(reserva.checkout),
               ];
             
 
@@ -142,7 +178,7 @@ export function DashBoard() {
                   payment={`/pagamento/${reserva.id}`}
                   pago={reserva.pagamentos.length > 1}
                   deleted={true}
-                  onHandleClickDelete={()=> handleDelete(reserva.id)}
+                  onHandleClickDelete={()=> handleDeleteAlert({id: reserva.id, nome: reserva.nome})}
                 >
                   {lines &&
                     lines.map((line, index: number) => {
@@ -152,7 +188,7 @@ export function DashBoard() {
                     })}
                 </Card>
               );
-            })}
+            }): <>Sem reservas</>}
            
         </Carrocel>
       </Main>
