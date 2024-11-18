@@ -62,12 +62,12 @@ export function Detalhar() {
       })
       const verificaDesconto = reserva.desconto > 0 ? "Sim": "Não"
       if (primeiraParcela && segundaParcela){
-        const primeiraParcelaToString = primeiraParcela.data_pagamento == null ? "Em aberto" : formatDate(primeiraParcela.data_pagamento)
-        const segundaParcelaToString = segundaParcela.data_pagamento == null ? "Em aberto" : formatDate(segundaParcela.data_pagamento)
+        const primeiraParcelaToString = primeiraParcela.data_pagamento == null ? "Em aberto" : formatDate(primeiraParcela.data_pagamento.toString())
+        const segundaParcelaToString = segundaParcela.data_pagamento == null ? "Em aberto" : formatDate(segundaParcela.data_pagamento.toString())
         setLines([
           reserva.documento, 
-          formatDate(reserva.checkin),
-          formatDate(reserva.checkout),
+          formatDate(reserva.checkin.toString()),
+          formatDate(reserva.checkout.toString()),
           primeiraParcela.valor_pagamento.toFixed(2),
           primeiraParcelaToString,
           segundaParcela.valor_pagamento.toFixed(2),

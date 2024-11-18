@@ -26,13 +26,11 @@ export function CustomAlert({ message, customAlert }: CustomAlertProps) {
   export function DeleteAlert({nome, onhandleConfirm, onhandleBlocked}:CustomDeletedAlertProps){
     return(
       <div className={styles.deleteAlert}>
-        <div className={styles.divisor}>
           <span>Deseja excluir a reserva de {nome}?</span>
           <div className={styles.buttonsAlert}>
             <button className='material-icons' onClick={onhandleConfirm}>check_circle</button>
             <button className='material-icons' onClick={onhandleBlocked}>block</button>
           </div>
-        </div>
       </div>
     )
   }

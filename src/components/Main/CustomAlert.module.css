@@ -23,20 +23,31 @@
 }
 
 .deleteAlert{
-    background-color: var(--orange-200);
     padding: .5rem;
-}
 
-.divisor{
     display: flex;
     justify-content: space-evenly;
-    /* flex-direction: column; */
-    height: 2.5rem;
+    flex-direction: column;
+    height: 16.05rem;
     align-items: center;
-    background-color: var(--white);
-    color: var(--blue);
+    color: var(--orange-200);
     font-weight: bold;
     text-transform: uppercase;
+
+    background-color: var(--light-gray-blue-100);
+    border: 1px solid var(--blue-100);
+    max-width: 14.65rem; 
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-radius: 8px;
+
+    span {
+        text-align: center;
+    }
+    
 }
 
 .buttonsAlert{

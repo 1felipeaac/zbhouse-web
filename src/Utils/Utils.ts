@@ -1,9 +1,10 @@
 import { AxiosError } from 'axios';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { FieldError } from './Interfaces';
 
-export function formatDate(data: Date): string {
-    return format(data, "dd/MM/yyyy")
+export function formatDate(data: string): string {
+    const date = parseISO(data)
+    return format(date, "dd/MM/yyyy")
 }
 
 export const valueFormatter = (item: { value: number }) => `${item.value}%`;

@@ -127,6 +127,12 @@ export function Pagamento() {
         {reserva && (
           <Form>
             <Inputs
+              desc="Valor da Reserva"
+              type="number"
+              disable={true}
+              value={reserva.valor_reserva.toFixed(2)}
+            />
+            <Inputs
               desc="Nome"
               type="text"
               disable={true}
@@ -160,7 +166,7 @@ export function Pagamento() {
               desc="Data do Pagamento"
               type="date"
               disable={true}
-              value={reserva.pagamentos[0].data_pagamento.toString()}
+              value={reserva.pagamentos[0].data_pagamento ? reserva.pagamentos[0].data_pagamento.toString() : ''}
             />
             <Inputs
               desc="Segunda Parcela"

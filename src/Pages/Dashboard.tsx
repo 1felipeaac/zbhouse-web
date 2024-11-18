@@ -155,38 +155,44 @@ export function DashBoard() {
       {messageAlert.length > 0 && (
           <CustomAlert customAlert={customAlert} message={messageAlert} />
         )}
-      {deleteAlert === true &&  reservaSelected.id != 0 && (
-          <DeleteAlert nome={reservaSelected.nome} onhandleConfirm={() => handleDelete(reservaSelected.id)} onhandleBlocked={handleBlocked}/>
-        )}
         <Carrocel avancar={handleAvancarPagina} voltar={handleVoltarPagina} pagina={pagAtual+1}>
           {reservas.length > 0 ?
-            reservas.map((reserva: Reservas, index: number) => {
+            reservas.map((reserva: Reservas) => {
               const lines = [
                 reserva.documento,
-                formatDate(reserva.checkin),
-                formatDate(reserva.checkout),
+                formatDate(reserva.checkin.toString()),
+                formatDate(reserva.checkout.toString()),
               ];
             
 
               return (
-                <Card
-                  key={index}
-                  id={reserva.id}
-                  nome={reserva.nome}
-                  valor={reserva.valor_reserva}
-                  detail={`/detalhar/${reserva.id}`}
-                  payment={`/pagamento/${reserva.id}`}
-                  pago={reserva.pagamentos.length > 1}
-                  deleted={true}
-                  onHandleClickDelete={()=> handleDeleteAlert({id: reserva.id, nome: reserva.nome})}
-                >
-                  {lines &&
-                    lines.map((line, index: number) => {
-                      const icon = iconsDB[index];
-                      const titulo = titulosDB[index];
-                      return (<Line key={icon} icon={icon} item={`${titulo} ${line}`} />);
-                    })}
-                </Card>
+                <div key={reserva.id}>
+                  {deleteAlert === true 
+                    && reservaSelected.id !== 0 
+                    && reservaSelected.id === reserva.id ? 
+                    <DeleteAlert
+                      nome={reservaSelected.nome} 
+                      onhandleConfirm={() => handleDelete(reservaSelected.id)} 
+                      onhandleBlocked={handleBlocked} 
+                    /> :
+                    <Card
+                      id={reserva.id}
+                      nome={reserva.nome}
+                      valor={reserva.valor_reserva}
+                      detail={`/detalhar/${reserva.id}`}
+                      payment={`/pagamento/${reserva.id}`}
+                      pago={reserva.pagamentos.length > 1}
+                      deleted={true}
+                      onHandleClickDelete={()=> handleDeleteAlert({id: reserva.id, nome: reserva.nome})}
+                    >
+                    {lines &&
+                      lines.map((line, index: number) => {
+                        const icon = iconsDB[index];
+                        const titulo = titulosDB[index];
+                        return (<Line key={icon} icon={icon} item={`${titulo} ${line}`} />);
+                      })}
+                  </Card>}
+                </div>
               );
             }): <>Sem reservas</>}
            
