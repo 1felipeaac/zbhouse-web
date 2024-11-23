@@ -7,6 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Logout from "@mui/icons-material/Logout";
 
 import { useAuth } from "../../hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 
 export interface NavProps{
@@ -18,7 +19,10 @@ export interface NavProps{
 export function Nav({onSearch, onChange, placeholder}:NavProps) {
   const isSmallScreen = window.innerWidth <= 768;
   const { desconectar } = useAuth();
+
+  const navigate = useNavigate()
   function handleLogout() {
+    navigate("/")
     desconectar();
   }
 
@@ -50,7 +54,12 @@ export function Nav({onSearch, onChange, placeholder}:NavProps) {
           inputProps={{ "aria-label": "search google maps" }}
           onChange={onChange}
         />
-        <IconButton type="button" sx={{ p: "10px" }} aria-label="search" onClick={onSearch}>
+        <IconButton 
+          type="button" 
+          sx={{ p: "10px" }} 
+          aria-label="search" 
+          onClick={onSearch}
+        >
           <SearchIcon />
         </IconButton>
       </Paper>

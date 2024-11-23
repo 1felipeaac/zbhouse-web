@@ -6,6 +6,7 @@ import { api } from "../services/api";
 import { AxiosError } from "axios";
 import { CustomAlert } from "../components/Main/CustomAlert";
 import { handlerCustomError } from "../Utils/Utils";
+import { useNavigate } from "react-router-dom";
 
 export function Reservar() {
   const [nome, setNome] = useState<string>()
@@ -16,10 +17,11 @@ export function Reservar() {
   const [valor, setValor] = useState<number>()
   const [desconto, setDesconto] = useState<number>()
   const [customAlert, setCustonAlert] = useState<boolean>(false);
+  const [salvo, setSalvo] = useState<boolean>(false);
   const [messageAlert, setMessageAlert] = useState<string[] | string>([]);
   const [comDesconto, setComDesconto] = useState(false);
   
-  
+  const navigate = useNavigate()
 
   function handleOnChangeNome(event: ChangeEvent<HTMLInputElement>){
     const nome = (event.target as HTMLInputElement).value;
@@ -75,8 +77,10 @@ export function Reservar() {
       
       await api.post("/reservas/", reserva)
       setMessageAlert("Reserva feita com sucesso")
+      setSalvo(!salvo)
     } catch (error) {
       const erro = error as AxiosError;
+      setSalvo(salvo)
       handlerCustomError(erro, setCustonAlert, setMessageAlert)
     }
   }
@@ -84,6 +88,9 @@ export function Reservar() {
     const timer = setTimeout(() => {
       setCustonAlert(false);
       setMessageAlert("");
+      if(salvo == true){
+        navigate("/")
+      }
     }, 5500);
   
     return () => clearTimeout(timer);
@@ -95,15 +102,61 @@ export function Reservar() {
           <CustomAlert customAlert={customAlert} message={messageAlert} />
         )}
         <Form>
-          <Inputs desc="Nome" type="text" required={true} onChange={handleOnChangeNome}/>
-          <Inputs desc="Documento" type="text" required={true} onChange={handleOnChangeDocumento}/>
-          <Inputs desc="Checkin" type="date" required={true} onChange={handleOnChangeCheckin}/>
-          <Inputs desc="Checkout" type="date" required={true} onChange={handleOnChangeCheckout}/>
-          <Inputs desc="Valor da Parcela" type="number" required={true} onChange={handleOnChangeValorPrcela}/>
-          <Inputs desc="Data Pagamento" type="date" required={true} onChange={handleOnChangeDataPagamento}/>
-          <Inputs desc="Com desconto" type="checkbox" checkbox="checkbox" required={false} onChecked={comDesconto} onChange={handleOnChange} />
-          <Inputs desc="Desconto %" type="number" required={false} onChange={handleOnChangeDesconto} disable={!comDesconto}/>
-          <Inputs type="submit" onClick={handleCriarReserva}/>
+          <Inputs 
+            desc="Nome" 
+            type="text" 
+            required={true} 
+            onChange={handleOnChangeNome}
+          />
+          <Inputs 
+            desc="Documento" 
+            type="text" 
+            required={true} 
+            onChange={handleOnChangeDocumento}
+          />
+          <Inputs 
+            desc="Checkin" 
+            type="date" 
+            required={true} 
+            onChange={handleOnChangeCheckin}
+          />
+          <Inputs 
+            desc="Checkout" 
+            type="date" 
+            required={true} 
+            onChange={handleOnChangeCheckout}
+          />
+          <Inputs 
+            desc="Valor da Parcela" 
+            type="number" 
+            required={true} 
+            onChange={handleOnChangeValorPrcela}
+          />
+          <Inputs 
+            desc="Data Pagamento" 
+            type="date" 
+            required={true} 
+            onChange={handleOnChangeDataPagamento}
+          />
+          <Inputs 
+            desc="Com desconto" 
+            type="checkbox" 
+            checkbox="checkbox" 
+            required={false} 
+            onChecked={comDesconto} 
+            onChange={handleOnChange} 
+          />
+          <Inputs 
+            desc="Desconto %" 
+            type="number" 
+            required={false} 
+            onChange={handleOnChangeDesconto} 
+            disable={!comDesconto}
+          />
+          <Inputs 
+            type="submit" 
+            onClick={handleCriarReserva}
+          />
         </Form>
       </Main>
     </Default>

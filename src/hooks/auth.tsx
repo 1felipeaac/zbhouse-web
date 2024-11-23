@@ -16,7 +16,7 @@ interface AuthContextType{
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }) {
-  const [data, setData] = useState<UserData>({user: null});
+  const [data, setData] = useState<UserData>({});
   async function autenticar({ login, senha }: { login: string, senha: string }) {
     try {
       const response = await api.post(
@@ -25,13 +25,11 @@ export function AuthProvider({ children }) {
         { withCredentials: true }
       );
 
-      const user = response.data
-
-      // console.log(response)
+      const {user} = response.data
 
       localStorage.setItem("@zbHouse:user", JSON.stringify(user));
 
-      setData(user)
+      setData({user})
 
     } catch (error) {
       if (error.response) {
@@ -44,7 +42,7 @@ export function AuthProvider({ children }) {
   function desconectar() {
     localStorage.removeItem("@zbHouse:user");
 
-    setData("");
+    setData({});
   }
 
   useEffect(() => {
@@ -58,7 +56,13 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ autenticar,  desconectar, user: data}}>
+    <AuthContext.Provider 
+      value={{ 
+        autenticar, 
+        desconectar, 
+        user: data.user
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

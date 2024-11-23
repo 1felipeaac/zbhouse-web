@@ -1,17 +1,16 @@
+import React from "react";
 import { Card, Line } from "../components/Main/Card";
 import { Carrocel } from "../components/Main/Carrocel";
 import { Main } from "../components/Main/Main";
 import { ChangeEvent, useEffect, useState } from "react";
 import {api} from "../services/api"
 import { Default } from "./Default";
-import { format } from 'date-fns';
-
-import React from "react";
 import { Reservas } from "../Utils/Interfaces";
 import { icons, titulos } from "../Utils/Lists";
 import { AxiosError } from "axios";
 import { CustomAlert, DeleteAlert } from "../components/Main/CustomAlert";
 import { formatDate, handlerCustomError } from "../Utils/Utils";
+import { SemRegistros } from "../components/Main/SemRegistros";
 
 
 const iconsDB = icons.slice(0,3);
@@ -150,12 +149,24 @@ export function DashBoard() {
   }, [messageAlert]);
 
   return (
-    <Default navBar={{onChange: handleOnChange, onSearch:handleBusca, placeholder: "Busca por nome"}}>
+    <Default 
+      navBar={
+        {
+          onChange: handleOnChange, 
+          onSearch:handleBusca, 
+          placeholder: "Busca por nome"
+        }
+      }
+    >
       <Main>
       {messageAlert.length > 0 && (
           <CustomAlert customAlert={customAlert} message={messageAlert} />
         )}
-        <Carrocel avancar={handleAvancarPagina} voltar={handleVoltarPagina} pagina={pagAtual+1}>
+        <Carrocel 
+          avancar={handleAvancarPagina} 
+          voltar={handleVoltarPagina} 
+          pagina={pagAtual+1}
+        >
           {reservas.length > 0 ?
             reservas.map((reserva: Reservas) => {
               const lines = [
@@ -183,7 +194,9 @@ export function DashBoard() {
                       payment={`/pagamento/${reserva.id}`}
                       pago={reserva.pagamentos.length > 1}
                       deleted={true}
-                      onHandleClickDelete={()=> handleDeleteAlert({id: reserva.id, nome: reserva.nome})}
+                      onHandleClickDelete={
+                        ()=> handleDeleteAlert({id: reserva.id, nome: reserva.nome})
+                      }
                     >
                     {lines &&
                       lines.map((line, index: number) => {
@@ -194,7 +207,7 @@ export function DashBoard() {
                   </Card>}
                 </div>
               );
-            }): <>Sem reservas</>}
+            }): <SemRegistros/>}
            
         </Carrocel>
       </Main>

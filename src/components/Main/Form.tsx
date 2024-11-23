@@ -1,7 +1,7 @@
 // @ts-ignore
 import styles from "./Form.module.css";
 import { useLocation } from "react-router-dom";
-import { DetailedHTMLProps, InputHTMLAttributes, ReactNode, useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import React from "react";
 
 interface InputsProps{

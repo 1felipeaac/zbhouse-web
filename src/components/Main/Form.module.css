@@ -34,7 +34,7 @@
     height: 3.25rem;
     border-radius: 4px;
     justify-content: center;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
     border: 1px solid var(--gray-400);
     text-align: center;
   }

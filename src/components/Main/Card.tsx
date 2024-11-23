@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./Card.module.css";
 import { ReactNode, useEffect } from "react";
 import React from "react";
-import { DeleteAlert } from "./CustomAlert";
 
 interface TitleProps{
   id?: number;
@@ -46,7 +45,12 @@ interface ButtonProps {
 function Button({handleClick, page, icon, button, pago}:ButtonProps) {
  
   return (
-    <Link className={`${styles.bar} ${pago ? styles.disabledLink : ''}`} to={page} onClick={handleClick} hidden={pago}>
+    <Link 
+      className={`${styles.bar} ${pago ? styles.disabledLink : ''}`} 
+      to={page} 
+      onClick={handleClick} 
+      hidden={pago}
+    >
       <span className="material-icons">{icon}</span>
       <button className={styles.button} disabled={pago}>{button}</button>
     </Link>
@@ -114,7 +118,15 @@ export function Card({
           />
         )}
         {payment && <Button icon="paid" button="Pagar" page={payment} pago={pago}/>}
-        {deleted && <button className="material-icons" onClick={onHandleClickDelete}>delete_outline</button>}
+        {
+          deleted && 
+            <button 
+              className="material-icons" 
+              onClick={onHandleClickDelete}
+            >
+              delete_outline
+            </button>
+          }
       </div>
     </div>
   );

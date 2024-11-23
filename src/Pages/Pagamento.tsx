@@ -27,12 +27,15 @@ export function Pagamento() {
   const [valor, setValor] = useState<number>();
   const [data, setData] = useState<Date>();
   const [customAlert, setCustonAlert] = useState<boolean>(false);
+  const [salvo, setSalvo] = useState<boolean>(false);
   const [messageAlert, setMessageAlert] = useState<string>("");
   const [recebidos, setRecebidos] = useState<Quantia>();
   const [aReceber, setAReceber] = useState<Quantia>();
   const [total, setTotal] = useState<DataItem[]>([]);
 
   const params = useParams();
+
+  const navigate = useNavigate()
 
   async function pagarSegundaParcela(event: FormEvent) {
     event.preventDefault();
@@ -42,8 +45,10 @@ export function Pagamento() {
         data,
       });
       setMessageAlert("Pagamento registrado com sucesso!");
+      setSalvo(!salvo)
     } catch (error) {
       const erro = error as AxiosError;
+      setSalvo(salvo)
       handlerCustomError(erro, setCustonAlert, setMessageAlert)
     }
   }
@@ -62,6 +67,9 @@ export function Pagamento() {
     const timer = setTimeout(() => {
       setCustonAlert(false);
       setMessageAlert("");
+      if(salvo == true){
+        navigate("/")
+      }
     }, 5500);
   
     return () => clearTimeout(timer);
@@ -166,7 +174,11 @@ export function Pagamento() {
               desc="Data do Pagamento"
               type="date"
               disable={true}
-              value={reserva.pagamentos[0].data_pagamento ? reserva.pagamentos[0].data_pagamento.toString() : ''}
+              value={
+                  reserva.pagamentos[0].data_pagamento ? 
+                  reserva.pagamentos[0].data_pagamento.toString() : 
+                  ''
+              }
             />
             <Inputs
               desc="Segunda Parcela"
