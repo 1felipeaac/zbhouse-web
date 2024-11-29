@@ -7,13 +7,13 @@ import React, { useEffect } from "react";
 export function Routes() {
   const { user, desconectar } = useAuth();
 
-  useEffect(() => {
+  // useEffect(() => {
  
-    if(user === undefined){
-      desconectar()
-    }
+  //   if(user === undefined){
+  //     desconectar()
+  //   }
 
-  },[])
+  // },[])
 
 
 
