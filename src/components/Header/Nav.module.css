@@ -7,11 +7,20 @@
   padding:0 2rem 0 2rem;
 }
 
+/* @media (max-width: 360px){
+  .css-humosd-MuiPaper-root{
+    width: 11rem;
+  }
+} */
+
 @media (max-width: 768px) {
   .nav{
     padding: 1rem;
     border: 0;
     flex: 1;
+    /* justify-content: center; */
+    max-width: 20rem;
+
   }
 }
 

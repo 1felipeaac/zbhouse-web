@@ -21,9 +21,15 @@
 @media (max-width: 768px) {
   .logo{
     margin: 1rem auto;
+    /* justify-content: center; */
+    max-width: 20rem;
     /* width: 100%; */
     /* > img{
       padding: .5rem;
     } */
+    strong{
+      width: 10rem;
+      font-size: 3rem;
+    }
   }
 }

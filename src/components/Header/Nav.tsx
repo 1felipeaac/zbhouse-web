@@ -45,11 +45,15 @@ export function Nav({onSearch, onChange, placeholder}:NavProps) {
           p: "2px 4px",
           display: "flex",
           alignItems: "center",
-          width: isSmallScreen ? "100%" : 400,
+          width: isSmallScreen ? 250 : 400,
+          // backgroundColor:"blue"
         }}
       >
         <InputBase
-          sx={{ ml: 1, flex: 1 }}
+          sx={{ 
+            ml: 1, 
+            flex: 1
+          }}
           placeholder={placeholder}
           inputProps={{ "aria-label": "search google maps" }}
           onChange={onChange}
