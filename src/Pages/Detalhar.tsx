@@ -87,14 +87,25 @@ export function Detalhar() {
         <Voltar />
         <div className={styles.detail}>
 
-          {reserva && <Card nome={reserva.nome} valor={reserva.valor_reserva}>
-            {lines.map((line, index) =>{
-              let icon = icons[index]
-              const titulo = titulos[index]
-              console.log(reserva.checkin, reserva.checkout, reserva.valor_reserva)
-              return <Line key={titulo} item={`${titulo} ${line}`}/>
-            })}
-          </Card>}
+
+          {reserva && 
+            <ul>
+            <li>{reserva.id}</li>
+            <li>{reserva.nome}</li>
+            <li>{reserva.valor_reserva}</li>
+            <li>{reserva.checkin.toString()}</li>
+            <li>{reserva.checkout.toString()}</li>
+            <li>{reserva.documento}</li>
+          </ul>
+          //   <Card nome={reserva.nome} valor={reserva.valor_reserva}>
+          //   {lines.map((line, index) =>{
+          //     let icon = icons[index]
+          //     const titulo = titulos[index]
+          //     console.log(reserva.checkin, reserva.checkout, reserva.valor_reserva)
+          //     return <Line key={titulo} item={`${titulo} ${line}`}/>
+          //   })}
+          // </Card>
+          }
         </div>
       </Main>
     </Default>
