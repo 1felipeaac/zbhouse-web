@@ -59,6 +59,12 @@
     color: var(--white);
     cursor: pointer;
   }
+
+  input[type="submit"]:active{
+    background-color: var(--blue-100)
+  }
+
+
 }
 
 .checkbox{
@@ -82,5 +88,6 @@
   .form{
     display: flex;
     flex-direction: column;
+    gap: 0;
   }
 }
