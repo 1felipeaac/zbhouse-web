@@ -8,11 +8,10 @@ import { Card, Line } from "../components/Main/Card";
 import { useParams } from "react-router-dom";
 import {api} from "../services/api"
 import { useEffect, useState } from "react";
-import { Pagamentos, Reservas } from "../Utils/Interfaces";
+import { Reservas } from "../Utils/Interfaces";
 import React from "react";
+import { formatDate, verificaPagamento } from "../Utils/Utils";
 import { icons, titulos } from "../Utils/Lists";
-import { format } from "date-fns";
-import { formatDate } from "../Utils/Utils";
 
 function Voltar() {
   return (
@@ -29,9 +28,6 @@ function Voltar() {
 
 export function Detalhar() {
   const [reserva, setReserva] = useState<Reservas | null>(null)
-  const [lines, setLines] = useState<string[]>([])
-  const [primeiraParcela, setPrimeiraParcela] = useState<Pagamentos | null>(null)
-  const [segundaParcela, setSegundaParcela] = useState<Pagamentos | null>(null)
 
   const params = useParams()
 
@@ -45,42 +41,6 @@ export function Detalhar() {
     consultaReservaPorId()
   },[])
 
-  useEffect(() => {
-    if (reserva != null){
-
-      if(reserva.pagamentos.length === 1){
-        setSegundaParcela({data_pagamento: null, parcela: 2, valor_pagamento: 0})
-      }
-
-      reserva.pagamentos.map((pagamento, index) => {
-        if (pagamento.parcela == 1) {
-          setPrimeiraParcela(pagamento);
-        } else if (index === 1) {
-          setSegundaParcela(pagamento);
-        }
-
-      })
-      const verificaDesconto = reserva.desconto > 0 ? "Sim": "Não"
-      if (primeiraParcela && segundaParcela){
-        const primeiraParcelaToString = primeiraParcela.data_pagamento == null ? "Em aberto" : formatDate(primeiraParcela.data_pagamento.toString())
-        const segundaParcelaToString = segundaParcela.data_pagamento == null ? "Em aberto" : formatDate(segundaParcela.data_pagamento.toString())
-        setLines([
-          reserva.documento, 
-          formatDate(reserva.checkin.toString()),
-          formatDate(reserva.checkout.toString()),
-          primeiraParcela.valor_pagamento.toFixed(2),
-          primeiraParcelaToString,
-          segundaParcela.valor_pagamento.toFixed(2),
-          segundaParcelaToString,
-          verificaDesconto,
-          reserva.desconto.toFixed(0)
-        ])
-      }
-    }
-  },[reserva])
-
-  
-
   return (
     <Default>
       <Main>
@@ -89,22 +49,17 @@ export function Detalhar() {
 
 
           {reserva && 
-            <ul>
-            <li>{reserva.id}</li>
-            <li>{reserva.nome}</li>
-            <li>{reserva.valor_reserva}</li>
-            <li>{reserva.checkin.toString()}</li>
-            <li>{reserva.checkout.toString()}</li>
-            <li>{reserva.documento}</li>
-          </ul>
-          //   <Card nome={reserva.nome} valor={reserva.valor_reserva}>
-          //   {lines.map((line, index) =>{
-          //     let icon = icons[index]
-          //     const titulo = titulos[index]
-          //     console.log(reserva.checkin, reserva.checkout, reserva.valor_reserva)
-          //     return <Line key={titulo} item={`${titulo} ${line}`}/>
-          //   })}
-          // </Card>
+            <Card nome={reserva.nome} valor={reserva.valor_reserva}>
+              <Line icon={icons[0]} item={`${titulos[0]} ${reserva.documento}`}/>
+              <Line icon={icons[1]} item={`${titulos[1]} ${formatDate(reserva.checkin.toString())}`}/>
+              <Line icon={icons[2]} item={`${titulos[2]} ${formatDate(reserva.checkout.toString())}`}/>
+              <Line icon={icons[3]} item={`${titulos[3]} ${reserva.pagamentos[0].valor_pagamento}`}/>
+              <Line icon={icons[4]} item={`${titulos[4]} ${verificaPagamento(reserva.pagamentos[0].data_pagamento)}`}/>
+              <Line icon={icons[5]} item={`${titulos[5]} ${reserva.pagamentos.length > 1 ? reserva.pagamentos[1].valor_pagamento : 0}`}/>
+              <Line icon={icons[6]} item={`${titulos[6]} ${ reserva.pagamentos.length > 1 ? verificaPagamento(reserva.pagamentos[1].data_pagamento): "Em Aberto"}`}/>
+              <Line icon={icons[7]} item={`${titulos[7]} ${reserva.desconto > 0 ? "Sim": "Não"}`}/>
+              <Line icon={icons[8]} item={`${titulos[8]} ${reserva.desconto.toFixed(1)}`}/>
+          </Card>
           }
         </div>
       </Main>

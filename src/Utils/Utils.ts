@@ -29,3 +29,7 @@ export function handlerCustomError(erro: AxiosError, setCustonAlert: Function, s
       }
 
 }
+
+export function verificaPagamento(pagamento:Date | null){
+  return formatDate(pagamento == null ? "Em aberto" : pagamento.toString());
+}
