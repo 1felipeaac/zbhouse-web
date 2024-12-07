@@ -22,7 +22,7 @@ function Title({id, nome, valor}: TitleProps) {
 }
 
 interface LineProps{
-  icon: string;
+  icon?: string;
   item: string;
 }
 

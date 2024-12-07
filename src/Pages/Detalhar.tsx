@@ -92,7 +92,7 @@ export function Detalhar() {
               let icon = icons[index]
               const titulo = titulos[index]
               console.log(reserva.checkin, reserva.checkout, reserva.valor_reserva)
-              return <Line key={titulo} icon={icon} item={`${titulo} ${line}`}/>
+              return <Line key={titulo} item={`${titulo} ${line}`}/>
             })}
           </Card>}
         </div>
