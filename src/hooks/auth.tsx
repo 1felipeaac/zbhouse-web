@@ -33,9 +33,9 @@ export function AuthProvider({ children }) {
 
     } catch (error) {
       if (error.response) {
-        console.log(error.response);
+        alert(error.response.data)
       }
-      console.log(error);
+      // console.log(error);
     }
   }
 

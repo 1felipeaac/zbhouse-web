@@ -2,8 +2,10 @@
 import styles from "./Login.module.css";
 import ZBHouseLogo from "../assets/zbHouseLogo.png";
 import { Form, Inputs } from "../components/Main/Form";
+import {handlerCustomError} from "../Utils/Utils"
 import { useAuth } from "../hooks/auth";
 import { useState } from "react";
+import { AxiosError } from "axios";
 import React from "react";
 
 export function Login() {
@@ -16,6 +18,7 @@ export function Login() {
     event.preventDefault();
     autenticar({ login, senha });
   }
+
   return (
     <div className={styles.wrapperLogin}>
       <div className={styles.asideImg}>
