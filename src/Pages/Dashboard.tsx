@@ -39,6 +39,8 @@ export function DashBoard() {
     try {
       if(busca != null){
         const {data} = await api.get(`reservas/busca/${busca}`);
+
+        console.log(data)
   
         setBuscaReservas(data)
       }

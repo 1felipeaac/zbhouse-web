@@ -16,6 +16,7 @@ export function Reservar() {
   const [dataPagamento, setDataPagamento] = useState<Date>()
   const [valor, setValor] = useState<number>()
   const [desconto, setDesconto] = useState<number>()
+  const [diaria, setDiaria] = useState<number>()
   const [customAlert, setCustonAlert] = useState<boolean>(false);
   const [salvo, setSalvo] = useState<boolean>(false);
   const [messageAlert, setMessageAlert] = useState<string[] | string>([]);
@@ -42,6 +43,10 @@ export function Reservar() {
   function handleOnChangeValorPrcela(event: ChangeEvent<HTMLInputElement>){
     const valor = (event.target as HTMLInputElement).value;
     setValor(Number(valor))
+  }
+  function handleOnChangeDiaria(event: ChangeEvent<HTMLInputElement>){
+    const valor = (event.target as HTMLInputElement).value;
+    setDiaria(Number(valor))
   }
   function handleOnChangeDataPagamento(event: ChangeEvent<HTMLInputElement>){
     const data = (event.target as HTMLInputElement).value;
@@ -72,7 +77,8 @@ export function Reservar() {
         checkin,
         checkout,
         pagamentos: [pagamento],
-        desconto: descontoPercent
+        desconto: descontoPercent,
+        diaria
       };
       
       await api.post("/reservas/", reserva)
@@ -152,6 +158,12 @@ export function Reservar() {
             required={false} 
             onChange={handleOnChangeDesconto} 
             disable={!comDesconto}
+          />
+          <Inputs 
+            desc="Diária" 
+            type="number" 
+            required={true} 
+            onChange={handleOnChangeDiaria}
           />
           <Inputs 
             type="submit" 

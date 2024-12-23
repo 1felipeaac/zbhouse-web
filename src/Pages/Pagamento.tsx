@@ -33,6 +33,8 @@ export function Pagamento() {
   const [aReceber, setAReceber] = useState<Quantia>();
   const [total, setTotal] = useState<DataItem[]>([]);
 
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
+
   const params = useParams();
 
   const navigate = useNavigate()
@@ -96,8 +98,8 @@ export function Pagamento() {
       let dataCharts: DataItem[] = [];
       if (recebidos != undefined && aReceber != undefined) {
         dataCharts = [
-          { label: "Recebidos", value: recebidos.quantia },
-          { label: "A Receber", value: aReceber.quantia },
+          { label: isSmallScreen ? "💰" : "Recebidos", value: recebidos.quantia },
+          { label: isSmallScreen ? "⏳" : "A Receber", value: aReceber.quantia },
         ];
       }
       setTotal(dataCharts);
