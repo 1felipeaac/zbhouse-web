@@ -8,7 +8,14 @@ import styles from "./Disponibilidade.module.css"
 
 export function Disponibilidade() {
   return (
-    <Default>
+    <Default 
+      navBar={
+        {
+          disabled:true, 
+          placeholder:"Pesquisa indisponível"
+        }
+      }
+    >
       <Main>
         <div className={styles.calendar}>
           <CalendarMaterial />

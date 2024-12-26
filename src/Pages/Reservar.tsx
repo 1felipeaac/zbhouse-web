@@ -104,7 +104,14 @@ export function Reservar() {
     return () => clearTimeout(timer);
   }, [messageAlert]);
   return (
-    <Default navBar={{placeholder:"Busca por data. dd/mm/aaaa"}}>
+    <Default 
+      navBar={
+        {
+          placeholder:"dd/mm/aaaa", 
+          inputType:"date"
+        }
+      }
+    >
       <Main>
         {messageAlert.length > 0 && (
           <CustomAlert customAlert={customAlert} message={messageAlert} />

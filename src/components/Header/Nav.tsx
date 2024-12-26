@@ -13,10 +13,12 @@ import { useNavigate } from "react-router-dom";
 export interface NavProps{
   onSearch? : () => void
   onChange?: React.ChangeEventHandler<HTMLInputElement>,
-  placeholder?: string
+  placeholder?: string,
+  inputType?: string,
+  disabled?: boolean
 }
 
-export function Nav({onSearch, onChange, placeholder}:NavProps) {
+export function Nav({onSearch, onChange, placeholder, inputType, disabled}:NavProps) {
   const isSmallScreen = window.innerWidth <= 768;
   const { desconectar } = useAuth();
 
@@ -29,16 +31,6 @@ export function Nav({onSearch, onChange, placeholder}:NavProps) {
 
   return (
     <nav className={styles.nav}>
-      {/* <IconButton
-        sx={{
-          p: "10px",
-          color: "white",
-          // display: isSmallScreen ? "none" : "inline",
-        }}
-        aria-label="menu"
-      >
-        <MenuIcon />
-      </IconButton> */}
       <Paper
         component="form"
         sx={{
@@ -55,8 +47,10 @@ export function Nav({onSearch, onChange, placeholder}:NavProps) {
             flex: 1
           }}
           placeholder={placeholder}
-          inputProps={{ "aria-label": "search google maps" }}
+          // inputProps={{ "aria-label": "search google maps" }}
           onChange={onChange}
+          type={inputType}
+          disabled={disabled}
         />
         <IconButton 
           type="button" 

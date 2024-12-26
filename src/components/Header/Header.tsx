@@ -6,11 +6,17 @@ import { Nav, NavProps } from "./Nav";
 
 interface HeaderProps extends NavProps{}
 
-export function Header({onSearch, onChange, placeholder}:HeaderProps) {
+export function Header({onSearch, onChange, placeholder, inputType, disabled}:HeaderProps) {
   return (
     <header className={styles.header}>
       <Logo />
-      <Nav onChange={onChange} onSearch={onSearch} placeholder={placeholder}/>
+      <Nav 
+        onChange={onChange} 
+        onSearch={onSearch} 
+        placeholder={placeholder} 
+        inputType={inputType} 
+        disabled={disabled}
+      />
     </header>
   );
 }

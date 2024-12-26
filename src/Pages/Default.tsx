@@ -10,11 +10,21 @@ interface DefaultProps{
 }
 export function Default({children, navBar}:DefaultProps) {
   const placeholderDefault = "Pesquisar..."
+  const typeDefault = "text"
+  const disabledDefault = false
 
   const placeholder = navBar?.placeholder || placeholderDefault
+  const type = navBar?.inputType || typeDefault
+  const disabled = navBar?.disabled || disabledDefault
   return (
     <div className={styles.page}>
-      <Header onChange={navBar?.onChange} onSearch={navBar?.onSearch} placeholder={placeholder}/>
+      <Header 
+        onChange={navBar?.onChange} 
+        onSearch={navBar?.onSearch} 
+        placeholder={placeholder} 
+        inputType={type}
+        disabled={disabled}
+      />
       <div id="default" className={styles.wrapper}>
         <Sidebar />
         {children}

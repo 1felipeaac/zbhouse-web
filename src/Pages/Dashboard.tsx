@@ -40,8 +40,6 @@ export function DashBoard() {
       if(busca != null){
         const {data} = await api.get(`reservas/busca/${busca}`);
 
-        console.log(data)
-  
         setBuscaReservas(data)
       }
       
@@ -125,7 +123,7 @@ export function DashBoard() {
         // setReservas(reservasData);
         setPaginas(totalPages)
       }catch(err){
-        console.log(err);
+        throw new Error("Não foi possível listar as reservas!")
       }
     }
     listarReservas();
@@ -156,7 +154,8 @@ export function DashBoard() {
         {
           onChange: handleOnChange, 
           onSearch:handleBusca, 
-          placeholder: "Busca por nome"
+          placeholder: "Busca por nome",
+          inputType: "text"
         }
       }
     >

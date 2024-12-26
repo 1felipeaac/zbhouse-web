@@ -108,7 +108,14 @@ export function Pagamento() {
     criarListaCharts();
   }, [aReceber, recebidos]);
   return (
-    <Default>
+    <Default 
+      navBar={
+        {
+          disabled:true, 
+          placeholder:"Pesquisa indisponível"
+        }
+      }
+    >
       <Main>
         {messageAlert && (
           <CustomAlert customAlert={customAlert} message={messageAlert} />
