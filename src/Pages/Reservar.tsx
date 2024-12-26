@@ -7,6 +7,8 @@ import { AxiosError } from "axios";
 import { CustomAlert } from "../components/Main/CustomAlert";
 import { handlerCustomError } from "../Utils/Utils";
 import { useNavigate } from "react-router-dom";
+//@ts-ignore
+import styles from "./Reservar.module.css"
 
 export function Reservar() {
   const [nome, setNome] = useState<string>()
@@ -144,21 +146,24 @@ export function Reservar() {
             required={true} 
             onChange={handleOnChangeDataPagamento}
           />
-          <Inputs 
-            desc="Com desconto" 
-            type="checkbox" 
-            checkbox="checkbox" 
-            required={false} 
-            onChecked={comDesconto} 
-            onChange={handleOnChange} 
-          />
-          <Inputs 
-            desc="Desconto %" 
-            type="number" 
-            required={false} 
-            onChange={handleOnChangeDesconto} 
-            disable={!comDesconto}
-          />
+
+          <div id={styles.boxDesconto}>
+            <Inputs 
+              desc="Com desconto (%)" 
+              type="checkbox" 
+              checkbox="checkbox" 
+              required={false} 
+              onChecked={comDesconto} 
+              onChange={handleOnChange} 
+            />
+            <Inputs 
+              desc="" 
+              type="number" 
+              required={false} 
+              onChange={handleOnChangeDesconto} 
+              disable={!comDesconto}
+            />
+          </div>
           <Inputs 
             desc="Diária" 
             type="number" 

@@ -1,9 +1,9 @@
 // @ts-nocheck
 import axios from 'axios'
+import {BASE_URL} from "../config/index"
 
 export const api = axios.create({
-    // baseURL: "http://localhost:8080",
-    baseURL: "https://reservaszbhouse-production.up.railway.app",
+    baseURL: BASE_URL,
     withCredentials: true,
     
 })
