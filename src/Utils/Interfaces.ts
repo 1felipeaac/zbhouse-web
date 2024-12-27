@@ -1,22 +1,22 @@
 export interface Reservas {
-    id: number;
-    nome: string;
-    documento: string;
+    id:            number;
+    nome:          string;
+    documento:     string;
     valor_reserva: number;
-    desconto: number;
-    checkin: Date;
-    checkout: Date;
-    pagamentos: Pagamentos[];
+    desconto:      number;
+    checkin:       Date;
+    checkout:      Date;
+    pagamentos:    Pagamentos[];
   }
   
   export interface Pagamentos {
-    data_pagamento: Date | null;
-    parcela: number;
+    data_pagamento:  Date | null;
+    parcela:         number;
     valor_pagamento: number;
   }
 
   export interface FieldError{
-    field: string;
+    field:   string;
     message: string;
   }
 
@@ -40,6 +40,11 @@ export interface Config {
 export interface Headers {
     Accept:         string;
     "Content-Type": string;
+}
+
+export interface BuscaPorData {
+  mensagem: string;
+  codigo:   number | null
 }
 
 

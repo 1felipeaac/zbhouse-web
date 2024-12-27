@@ -7,6 +7,11 @@ export function formatDate(data: string): string {
     return format(date, "dd/MM/yyyy")
 }
 
+export function formatDateSearch(data: string): string {
+  const date = parseISO(data)
+  return format(date, "dd-MM-yyyy")
+}
+
 export const valueFormatter = (item: { value: number }) => `${item.value}%`;
 
 export function handlerCustomError(erro: AxiosError, setCustonAlert: Function, setMessageAlert: Function){

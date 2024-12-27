@@ -34,3 +34,17 @@ export function CustomAlert({ message, customAlert }: CustomAlertProps) {
       </div>
     )
   }
+
+  interface SearchAlertProps{
+    message?: string;
+    codigo?: number
+  }
+
+  export function SearchAlert({message, codigo}:SearchAlertProps){
+    const classSelected = codigo == 1 ? `${styles.customSuccessAlert}` : `${styles.customErrorAlert}`
+    return(
+      <div className={classSelected}>
+        {message}
+      </div>
+    )
+  }

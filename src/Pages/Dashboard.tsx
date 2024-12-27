@@ -34,7 +34,7 @@ export function DashBoard() {
   const [deleteAlert, setDeleteAlert] = useState<boolean>(false)
   const [reservaSelected, setReservaSelected] = useState<ReservaSelected>({id: 0, nome: '' })
   
-  async function handleBusca(){
+  async function handleBuscaPorNome(){
 
     try {
       if(busca != null){
@@ -49,13 +49,10 @@ export function DashBoard() {
     }
   }
 
-
   function handleOnChange(event: ChangeEvent<HTMLInputElement>) {
     const valor = (event.target as HTMLInputElement).value;
     setBusca(valor);
   }
-
-
 
   async function handleAvancarPagina(){
 
@@ -153,7 +150,7 @@ export function DashBoard() {
       navBar={
         {
           onChange: handleOnChange, 
-          onSearch:handleBusca, 
+          onSearch:handleBuscaPorNome, 
           placeholder: "Busca por nome",
           inputType: "text"
         }
